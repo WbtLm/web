@@ -1,0 +1,1 @@
+1.maven help:system下载慢/eclipse中项目创建失败解决方法：更换阿里的源： https://blog.csdn.net/quan278905570/article/details/94581055
