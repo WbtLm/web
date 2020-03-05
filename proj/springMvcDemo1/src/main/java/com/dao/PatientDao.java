@@ -1,7 +1,7 @@
 package com.dao;
 
-import com.entity.Patient;
-import com.entity.Doctor;
+import com.entity.DBPatient;
+import com.entity.DBDoctor;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ public interface PatientDao {
     /*
         注册患者
      */
-    Integer insertPatient(Patient patient);
+    Integer insertPatient(DBPatient patient);
     /*
         更新患者信息
      */
-    Integer updatePatient(Patient patient);
+    Integer updatePatient(DBPatient patient);
     /*
         登录获取密码
      */
@@ -21,9 +21,9 @@ public interface PatientDao {
     /*
         通过患者id获取信息
      */
-    Patient selectPatientById(int id);
+    DBPatient selectPatientById(int id);
     /*
         获取医生列表
      */
-    List<Doctor> getDoctorList();
+    List<DBDoctor> getDoctorList();
 }

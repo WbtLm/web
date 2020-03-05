@@ -2,7 +2,7 @@ package com.entity;
 
 import java.io.Serializable;
 
-public class Patient implements Serializable {
+public class DBPatient implements Serializable {
     private int id;
     private String idNumber;
     private String healthCareType;
