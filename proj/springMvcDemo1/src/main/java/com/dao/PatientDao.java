@@ -7,23 +7,23 @@ import java.util.List;
 
 public interface PatientDao {
     /*
-        æ³¨å†Œæ‚£è€…
+        ×¢²á»¼Õß
      */
     Integer insertPatient(DBPatient patient);
     /*
-        æ›´æ–°æ‚£è€…ä¿¡æ¯
+        ¸üĞÂ»¼ÕßĞÅÏ¢
      */
     Integer updatePatient(DBPatient patient);
     /*
-        ç™»å½•è·å–å¯†ç 
+        µÇÂ¼»ñÈ¡ÃÜÂë
      */
     String getPatientPassword(String account);
     /*
-        é€šè¿‡æ‚£è€…idè·å–ä¿¡æ¯
+        Í¨¹ı»¼Õßid»ñÈ¡ĞÅÏ¢
      */
     DBPatient selectPatientById(int id);
     /*
-        è·å–åŒ»ç”Ÿåˆ—è¡¨
+        »ñÈ¡Ò½ÉúÁĞ±í
      */
     List<DBDoctor> getDoctorList();
 }
