@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 	
 	/**
-	 * ÓÃ»§µÇÂ¼µÄ´¦Àíº¯Êı
-	 * @param userAccount ÓÃÓÚ½ÓÊÕÓÃ»§Ìá½»ĞÅÏ¢µÄ²ÎÊı  ÇëÇó²ÎÊıºÍº¯Êı²ÎÊıÃûÏàÍ¬
+	 * ç”¨æˆ·ç™»å½•çš„å¤„ç†å‡½æ•°
+	 * @param userAccount ç”¨äºæ¥æ”¶ç”¨æˆ·æäº¤ä¿¡æ¯çš„å‚æ•°  è¯·æ±‚å‚æ•°å’Œå‡½æ•°å‚æ•°åç›¸åŒ
 	 * @return
 	 */
 	@RequestMapping( value = "log",method=RequestMethod.POST)

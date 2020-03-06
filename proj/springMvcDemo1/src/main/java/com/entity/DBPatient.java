@@ -9,7 +9,7 @@ public class DBPatient implements Serializable {
     private String name;
     private String sex;
     private int age;
-    private String allergy; //¹ıÃôÊ·
+    private String allergy; //è¿‡æ•å²
 
     public int getId() {
         return id;
