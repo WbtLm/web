@@ -4,5 +4,47 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
 <mapper namespace="com.dao.PatientDao">
-
+    <!--插入新患者-->
+    <insert id="insertPatient" parameterType="DBPatient">
+        insert into patient (
+            IdNumber,
+            HealthCareType,
+            Name,
+            Sex,
+            Age,
+            Allergy,
+        )values (
+            #{idNumber},
+            #{healthCareType},
+            #{name},
+            #{sex},
+            #{age},
+            #{allergy}
+        )
+    </insert>
+    <!--更新患者信息-->
+    <update id="updatePatient" parameterType="DBPatient">
+        update patient set
+            IdNumber = #{idNumber},
+            HealthCareType = #{healthCareType},
+            Name = #{name},
+            Sex = #{sex},
+            Age = #{age},
+            Allergy = #{allergy},
+        where
+            PatientId = #{id}
+    </update>
+    <!--登录获取密码-->
+    <select id="getPatientPassword" parameterType="String" resultType="String">
+        select PassWord from patientaccount where Account = #{account};
+    </select>
+    <!--通过患者id获取信息-->
+    <select id="selectPatientById" parameterType="int" resultType="DBPatient">
+        select * from patient where PatientId = #{id};
+    </select>
+    <!--获取医生列表-->
+    <select id="getDoctorList" resultType="DBDoctor">
+        select * from doctor;
+    </select>
 </mapper>
+
