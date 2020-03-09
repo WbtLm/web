@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="log" method = "post">
+<form action="user/login" method = "post">
 账号1：<input type="text" name="userAccount"><br>
 密码：<input type="text" name="userPass"><br>
 <input type="submit" value="登录"><br>
