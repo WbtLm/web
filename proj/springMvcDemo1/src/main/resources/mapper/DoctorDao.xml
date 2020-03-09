@@ -5,7 +5,7 @@
 <!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
 <mapper namespace="com.dao.DoctorDao">
     <!--注册医师-->
-    <insert id="insertDoctor" parameterType="c">
+    <insert id="insertDoctor" parameterType="DBDoctor">
         insert into doctor (
             IdNumber,
             Name,
@@ -23,7 +23,7 @@
         );
     </insert>
     <!--更新医师信息-->
-    <update id="updateDoctor" parameterType="updateDoctor">
+    <update id="updateDoctor" parameterType="DBDoctor">
         update doctor set
             IdNumber = #{idNumber},
             DepartmentId = #{healthCareType},
