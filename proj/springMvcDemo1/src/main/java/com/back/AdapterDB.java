@@ -6,7 +6,7 @@ import com.entity.DBPatient;
 public class AdapterDB {
 	static DoctorInfo doctorInfoEchoDB2Back(DBDoctor db) { 
 		DoctorInfo retDoctorInfo = new DoctorInfo();
-		retDoctorInfo.setId(db.getId());
+		retDoctorInfo.setId(db.getId()*10+1);
 		retDoctorInfo.setUserName(db.getName());
 		retDoctorInfo.setAge(db.getAge());
 		retDoctorInfo.setName(db.getName());
@@ -15,32 +15,40 @@ public class AdapterDB {
 		if(db.getSex().equals("男")) {
 			retDoctorInfo.setBoy();
 		}
-		else {
+		else if(db.getSex().equals("女")){
 			retDoctorInfo.setGirl();
+		}
+		else {
+			retDoctorInfo.deleteSex();
 		}
 		
 		retDoctorInfo.deleteIDCard();
 		retDoctorInfo.deleteTel();
+		
+		
 		return retDoctorInfo;
 	}
 	static DBDoctor doctorInfoEchoBack2DB(DoctorInfo info) {
 		DBDoctor ret = new DBDoctor();
 		ret.setAge(info.getAge());
 		ret.setDepartmentId(info.getDepartmentID());
-		ret.setId(info.getId());
+		ret.setId(info.getId()/10);
 		ret.setName(info.getName());
 		if(info.isBoy()) {
 			ret.setSex("男");
 		}
-		else {
+		else if(info.isGirl()){
 			ret.setSex("女");
+		}
+		else {
+			ret.setSex("null");
 		}
 		ret.setTitle(info.getTitle());
 		return ret;
 	}
 	static PatientInfo patientInfoEchoDB2Back(DBPatient db) { 
 		PatientInfo retPatientInfo = new PatientInfo();
-		retPatientInfo.setId(db.getId());
+		retPatientInfo.setId(db.getId()*10+2);
 		retPatientInfo.setUserName(db.getName());
 		retPatientInfo.setAge(db.getAge());
 		retPatientInfo.setName(db.getName());
@@ -49,8 +57,11 @@ public class AdapterDB {
 		if(db.getSex().equals("男")) {
 			retPatientInfo.setBoy();
 		}
-		else {
+		else if(db.getSex().equals("女")){
 			retPatientInfo.setGirl();
+		}
+		else {
+			retPatientInfo.deleteSex();
 		}
 //		private String healthCareType;
 //		private String allergy;
@@ -63,14 +74,17 @@ public class AdapterDB {
 		ret.setAge(info.getAge());
 		ret.setAllergy(info.getAllergy());
 		ret.setHealthCareType(info.getHealthCareType());
-		ret.setId(info.getId());
+		ret.setId(info.getId()/10);
 		ret.setIdNumber(info.getIDCard());
 		ret.setName(info.getName());
 		if(info.isBoy()) {
 			ret.setSex("男");
 		}
-		else {
+		else if(info.isGirl()) {
 			ret.setSex("女");
+		}
+		else {
+			ret.setSex("null");
 		}
 		return ret;
 	}

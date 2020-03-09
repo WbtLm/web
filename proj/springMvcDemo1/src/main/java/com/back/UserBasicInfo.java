@@ -10,11 +10,11 @@ abstract public class UserBasicInfo implements Cloneable{
     private String tel;
     private String name;
     /**
-     * ÐÔ±ð ÄÐ/Å® 1/2
+     * ï¿½Ô±ï¿½ ï¿½ï¿½/Å® 1/2
      */
     private int sex;
     /**
-     * Éí·Ý£ºpatient/doctor  1/2
+     * ï¿½ï¿½Ý£ï¿½patient/doctor  1/2
      */ 
     private int capacity;
    
