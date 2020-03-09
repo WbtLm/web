@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 abstract public class UserBasicInfo implements Cloneable{
 	private int id;
-    private int IDCard;
+    private String IDCard;
     private String userName;
     private int age;
     private String tel;
@@ -19,7 +19,7 @@ abstract public class UserBasicInfo implements Cloneable{
     private int capacity;
    
     public void deleteIDCard() {
-    	IDCard=0;
+    	IDCard=null;
     }
     public void deleteUserName() {
     	userName=null;
@@ -42,7 +42,7 @@ abstract public class UserBasicInfo implements Cloneable{
     public String toJson() {
     	JSONObject json = new JSONObject();
     	json.put("id",id);
-    	if(IDCard != 0)
+    	if(IDCard !=null)
     		json.put("IDCard",IDCard);
     	if(userName!=null)
     		json.put("userName",userName);
@@ -71,10 +71,10 @@ abstract public class UserBasicInfo implements Cloneable{
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
-    public void setDoctor() {
+    protected void setDoctor() {
     	setCapacity(2);
     }
-    public void setPatient() {
+    protected void setPatient() {
     	setCapacity(1);
     }
     public boolean isDoctor() {
@@ -101,10 +101,10 @@ abstract public class UserBasicInfo implements Cloneable{
     public void setId(int id) {
     	this.id=id;
     }
-	public int getIDCard() {
+	public String getIDCard() {
 		return IDCard;
 	}
-	public void setIDCard(int iDCard) {
+	public void setIDCard(String iDCard) {
 		IDCard = iDCard;
 	}
 	public String getUserName() {

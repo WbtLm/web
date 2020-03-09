@@ -5,6 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 public class DoctorInfo extends UserBasicInfo{
     private int departmentID;
     private String title;
+    public DoctorInfo() {
+		// TODO Auto-generated constructor stub
+    	super.setDoctor();
+	}
 	public int getDepartmentID() {
 		return departmentID;
 	}

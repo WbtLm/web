@@ -5,7 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 public class PatientInfo extends UserBasicInfo {
 	private String healthCareType;
 	private String allergy;
-	
+	public PatientInfo() {
+		// TODO Auto-generated constructor stub
+		super.setPatient();
+	}
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
