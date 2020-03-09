@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TestController {
-	@RequestMapping("/user/log")	//ÅäÖÃ
+	@RequestMapping("/user/log")	//ï¿½ï¿½ï¿½ï¿½
 	public String userlogin(String userAccount,String userPass,Model model) {
 			return "none";
 	}
