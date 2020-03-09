@@ -4,11 +4,20 @@ import java.io.Serializable;
 
 public class DBDoctor implements Serializable {
     private int id;
+    private String idNumber;
     private String name;
     private String sex;
     private int age;
     private int departmentId;
     private String title;
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 
     public int getId() {
         return id;

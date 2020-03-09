@@ -4,5 +4,55 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
 <mapper namespace="com.dao.DoctorDao">
-
+    <!--注册医师-->
+    <insert id="insertDoctor" parameterType="c">
+        insert into doctor (
+            IdNumber,
+            Name,
+            Sex,
+            Age,
+            DepartmentId,
+            Title
+        ) values (
+            #{idNumber},
+            #{name},
+            #{sex},
+            #{age},
+            #{departmentId},
+            #{title}
+        );
+    </insert>
+    <!--更新医师信息-->
+    <update id="updateDoctor" parameterType="updateDoctor">
+        update doctor set
+            IdNumber = #{idNumber},
+            DepartmentId = #{healthCareType},
+            Name = #{name},
+            Sex = #{sex},
+            Age = #{age},
+            Title = #{allergy},
+        where
+            DoctorId = #{id}
+    </update>
+    <!--获取登录密码-->
+    <select id="getDoctorPassword" parameterType="String" resultType="String">
+        select PassWord from doctoraccount where Account = #{account}
+    </select>
+    <!--通过医师id获取信息-->
+    <select id="selectDoctorById" parameterType="int" resultType="DBDoctor">
+        select * from doctor where DoctorId = #{d_id}
+    </select>
+    <!--通过医师id获取患者-->
+    <select id="getPatientList" parameterType="int" resultType="DBPatient">
+        select * from patient where PatientId in (
+            select register.PatientId from register where
+            DoctorId = #{d_id} and AppointmentTime &lt;= now()
+        )
+    </select>
+    <!--医师修改患者挂号状态-->
+    <update id="updateRegisterStatus" parameterType="int">
+        update register set
+            Diagnostic State = #{i}
+        where DoctorId = #{d_id} and PatientId = #{p_id}
+    </update>
 </mapper>

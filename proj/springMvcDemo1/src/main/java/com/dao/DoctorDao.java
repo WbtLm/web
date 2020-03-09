@@ -2,6 +2,8 @@ package com.dao;
 import com.entity.DBDoctor;
 import com.entity.DBPatient;
 
+import java.util.List;
+
 public interface DoctorDao {
 	/*
 	  注册医师
@@ -18,11 +20,11 @@ public interface DoctorDao {
     /*
        通过医师id获取信息
     */
-    DBPatient selectDoctorById(int d_id);
+    DBDoctor selectDoctorById(int d_id);
     /*
         通过医师id获取患者 
     */
-    DBPatient getPatientList(int d_id);
+    List<DBPatient> getPatientList(int d_id);
     /*
         医师修改患者挂号状态 ,i为挂号状态
     */
