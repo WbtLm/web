@@ -12,7 +12,12 @@ import com.back.info.*;
 public class Doctor {
 	DoctorInfo info;
 	private DoctorDao dao;
-	
+	public static int getDBIDbyBackID(int doctorBackID) {
+		DoctorInfo pInfo = new DoctorInfo();
+		pInfo.setId(doctorBackID);
+		DBDoctor dbDoctor = AdapterDB.doctorInfoEchoBack2DB(pInfo);//echo (back id to db id)
+		return dbDoctor.getId();
+	}
 	public int getDBID() {
 		if(info!=null) {
 			DBDoctor dbDoctor = AdapterDB.doctorInfoEchoBack2DB(this.info);//echo (back id to db id)
@@ -47,7 +52,7 @@ public class Doctor {
 		if(info==null) {
 			return false;
 		}
-		if(dao.updateDoctor(dao.selectDoctorById(this.getDBID())) == 0){
+		if(dao.updateDoctor(AdapterDB.doctorInfoEchoBack2DB(this.info)) == 0){
 			return false;
 		}
 		return true;
