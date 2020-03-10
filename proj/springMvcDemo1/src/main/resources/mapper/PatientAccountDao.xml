@@ -8,4 +8,11 @@
     <select id="getIdByAccount" parameterType="String" resultType="int">
         select PatientId from patientaccount where Account = #{account};
     </select>
+    <!--添加患者账号-->
+    <insert id="insertPatientAccount" parameterType="DBPatientAccount">
+        insert into patientaccount
+        (Account, PassWord)
+        values
+        (#{account}, #{passWord});
+    </insert>
 </mapper>

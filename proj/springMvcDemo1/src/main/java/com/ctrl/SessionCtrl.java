@@ -3,7 +3,7 @@ package com.ctrl;
 import java.util.*;
 
 public class SessionCtrl {
-	HashMap<Integer, String> map=new HashMap<>();
+	HashMap<Integer, String> map=new HashMap<Integer, String>();
 	
 	public String getSIDbyUID(int UID,int type) {
 		if(map.containsKey(UID)) {
