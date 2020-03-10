@@ -21,4 +21,12 @@
 
     <!-- 配置基于注解的声明式事务 -->
     <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
+    
+    <!-- 开启Srping注解，配置创建 spring 容器要扫描的包 -->
+     <context:component-scan base-package="springMvcDemo1.controller"/>
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/"></property>
+    <property name="suffix" value=".jsp"></property>
+    </bean>
 </beans>

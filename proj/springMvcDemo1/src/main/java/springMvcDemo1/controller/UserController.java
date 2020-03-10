@@ -31,7 +31,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping( value = "user/login",method=RequestMethod.POST)
+	@RequestMapping(value = "user/login",method=RequestMethod.POST)
 	@ResponseBody
 	public String userLogin1(String userAccount,String userPass) {
 	//	{success:0/1(false/true),sessionID:""�����ɹ���,errCode:""}
