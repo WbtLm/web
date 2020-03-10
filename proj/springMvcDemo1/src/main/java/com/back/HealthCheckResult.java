@@ -11,4 +11,28 @@ public class HealthCheckResult {
 		this.prescription=prescription;
 		this.theDiagnosis=theDiagnosis;
 	}
+	public int getResultID() {
+		return resultID;
+	}
+	public void setResultID(int resultID) {
+		this.resultID = resultID;
+	}
+	public int getRegisteredID() {
+		return registeredID;
+	}
+	public void setRegisteredID(int registeredID) {
+		this.registeredID = registeredID;
+	}
+	public String getPrescription() {
+		return prescription;
+	}
+	public void setPrescription(String prescription) {
+		this.prescription = prescription;
+	}
+	public String getTheDiagnosis() {
+		return theDiagnosis;
+	}
+	public void setTheDiagnosis(String theDiagnosis) {
+		this.theDiagnosis = theDiagnosis;
+	}
 }

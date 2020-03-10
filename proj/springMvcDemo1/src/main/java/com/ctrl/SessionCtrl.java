@@ -17,7 +17,7 @@ public class SessionCtrl {
 	public int getTypebySID(String SID) {
 		return (int)SID.indexOf(0);
 	}
-	public String getSIDbyLogin(int UID,int type) {
+	public String getSIDbyLogin(int UID,int type,String account,String password) {
 		if(map.containsKey(UID)) {
 			return map.get(UID);
 		}
