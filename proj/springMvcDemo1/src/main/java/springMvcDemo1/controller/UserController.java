@@ -30,23 +30,5 @@ public class UserController {
 		return "main";
 	}
 	
-	
-	@RequestMapping(value = "user/login",method=RequestMethod.POST)
-	@ResponseBody
-	public String userLogin1(String userAccount,String userPass) {
-	//	{success:0/1(false/true),sessionID:""�����ɹ���,errCode:""}
-		JSONObject json = new JSONObject();
-		int success=0;
-		int sessionID=0;
-		String errCode="1";
-		if(userAccount!=null && userAccount.equals(userPass)){
-			success=1;
-			sessionID=12121;
-			errCode="0";
-		}
-		json.put("success", success);
-		json.put("sessionID", sessionID);
-		json.put("errCode", errCode);
-		return JSON.toJSONString(json);
-	}
+
 }
