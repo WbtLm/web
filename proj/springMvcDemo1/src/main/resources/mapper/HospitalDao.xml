@@ -4,5 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
 <mapper namespace="com.dao.HospitalDao">
-
+    <!--预约住院-->
+    <insert id="insertHospital" parameterType="DBHospital">
+        insert into inhospital
+        (PatientId, DoctorId, AppointmentTime)
+        values
+        (#{patientId}, #{doctorId}, #{appointmentTime});
+    </insert>
+    <!--查询住院信息-->
+    <select id="InselectHospitalById" parameterType="int" resultType="DBHospital">
+        select * from inhospital where PatientId = #{id};
+    </select>
 </mapper>
