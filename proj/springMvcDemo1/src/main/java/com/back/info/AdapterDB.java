@@ -1,10 +1,10 @@
-package com.back;
+package com.back.info;
 
 import com.entity.DBDoctor;
 import com.entity.DBPatient;
 
 public class AdapterDB {
-	static DoctorInfo doctorInfoEchoDB2Back(DBDoctor db) { 
+	public static DoctorInfo doctorInfoEchoDB2Back(DBDoctor db) { 
 		DoctorInfo retDoctorInfo = new DoctorInfo();
 		retDoctorInfo.setId(db.getId()*10+1);
 		retDoctorInfo.setUserName(db.getName());
@@ -28,7 +28,7 @@ public class AdapterDB {
 		
 		return retDoctorInfo;
 	}
-	static DBDoctor doctorInfoEchoBack2DB(DoctorInfo info) {
+	public static DBDoctor doctorInfoEchoBack2DB(DoctorInfo info) {
 		DBDoctor ret = new DBDoctor();
 		ret.setAge(info.getAge());
 		ret.setDepartmentId(info.getDepartmentID());
@@ -46,7 +46,7 @@ public class AdapterDB {
 		ret.setTitle(info.getTitle());
 		return ret;
 	}
-	static PatientInfo patientInfoEchoDB2Back(DBPatient db) { 
+	public static PatientInfo patientInfoEchoDB2Back(DBPatient db) { 
 		PatientInfo retPatientInfo = new PatientInfo();
 		retPatientInfo.setId(db.getId()*10+2);
 		retPatientInfo.setUserName(db.getName());
@@ -69,7 +69,7 @@ public class AdapterDB {
 		retPatientInfo.setAllergy(db.getAllergy());
 		return retPatientInfo;
 	}
-	static DBPatient patientInfoEchoBack2DB(PatientInfo info) {
+	public static DBPatient patientInfoEchoBack2DB(PatientInfo info) {
 		DBPatient ret = new DBPatient();
 		ret.setAge(info.getAge());
 		ret.setAllergy(info.getAllergy());
