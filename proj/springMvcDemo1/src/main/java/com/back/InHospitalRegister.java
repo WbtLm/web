@@ -14,4 +14,37 @@ public class InHospitalRegister {
 		this.doctorID=doctorID;
 		this.AppointmentTime=AppointmentTime;
 	}
+
+	public int getInHospitalID() {
+		return inHospitalID;
+	}
+
+	public void setInHospitalID(int inHospitalID) {
+		this.inHospitalID = inHospitalID;
+	}
+
+	public int getPatientID() {
+		return patientID;
+	}
+
+	public void setPatientID(int patientID) {
+		this.patientID = patientID;
+	}
+
+	public int getDoctorID() {
+		return doctorID;
+	}
+
+	public void setDoctorID(int doctorID) {
+		this.doctorID = doctorID;
+	}
+
+	public Date getAppointmentTime() {
+		return AppointmentTime;
+	}
+
+	public void setAppointmentTime(Date appointmentTime) {
+		AppointmentTime = appointmentTime;
+	}
+	
 }
