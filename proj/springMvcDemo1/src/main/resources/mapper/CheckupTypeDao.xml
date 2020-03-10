@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.dao.CheckupTypeDao">
+    <!--通过id获取类型名-->
+    <select id="getCheckupTypeNameById" parameterType="int" resultType="String">
+        select TypeName from checkuptype where TypeId = #{id};
+    </select>
+    <!--通过类型名获取id-->
+    <select id="getCheckupTypeIdByName" parameterType="String" resultType="int">
+        select TypeId from checkuptype where TypeName = #{typeName};
+    </select>
+</mapper>

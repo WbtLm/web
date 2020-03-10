@@ -4,5 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
 <mapper namespace="com.dao.CheckupDao">
-
+    <!--预约体检-->
+    <insert id="insertCheckup" parameterType="DBAppointCheckUp">
+        insert into appointcheckup
+        (PatientId, TypeId, AppointmentTime)
+        values
+        (#{patientId}, #{typeId}, #{appointmentTime});
+    </insert>
+    <!--查询体检信息-->
+    <select id="selectCheckupById" parameterType="int" resultType="DBAppointCheckUp">
+        select * from appointcheckup where PatientId = #{id};
+    </select>
 </mapper>
