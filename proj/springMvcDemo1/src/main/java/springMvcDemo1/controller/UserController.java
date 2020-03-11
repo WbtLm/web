@@ -74,6 +74,7 @@ public class UserController {
 		JSONObject json = new JSONObject();
 		int success=1;
 		String errCode="";
+		System.out.println(phone+"----"+password);
 		String sessionID=sessionCtrl.getSIDbyRegist(1, phone, password);
 		if(sessionCtrl.isCorrect(sessionID) == 0 ){
 			errCode=sessionID;
