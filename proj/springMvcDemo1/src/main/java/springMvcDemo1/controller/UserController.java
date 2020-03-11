@@ -1,9 +1,12 @@
 package springMvcDemo1.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.jdbc.Null;
 //import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +39,12 @@ public class UserController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
 	@RequestMapping(value = "user/login",method=RequestMethod.POST)
 	@ResponseBody
-	public String userLogin1(String account,String password,int type) {
+	public String userLogin1(@RequestBody String request) {	
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String account=jsonObj.getString("account");
+		String password=jsonObj.getString("password");
+		int type=jsonObj.getIntValue("type");
+		
 		JSONObject json = new JSONObject();
 		int success=1;
 		String errCode="";
@@ -53,8 +61,16 @@ public class UserController {
 	
 	@RequestMapping(value = "user/regist/patient",method=RequestMethod.POST)
 	@ResponseBody
-	public String userRegistPatient(String loginType,String name,String age,String phone,String password,
-			String idNumber,String history,String insurance,String sex) {
+	public String userRegistPatient(@RequestBody String regist) {
+		JSONObject jsonObj =JSONObject.parseObject(regist);
+		String name=jsonObj.getString("name");
+		String age=jsonObj.getString("age");
+		String phone=jsonObj.getString("phone");
+		String password=jsonObj.getString("password");
+		String idNumber=jsonObj.getString("idNumber");
+		String history=jsonObj.getString("history");
+		String insurance=jsonObj.getString("insurance");
+		String sex=jsonObj.getString("sex");
 		JSONObject json = new JSONObject();
 		int success=1;
 		String errCode="";
@@ -87,8 +103,16 @@ public class UserController {
 	}
 	@RequestMapping(value = "user/regist/doctor",method=RequestMethod.POST)
 	@ResponseBody
-	public String userRegistDoctor(String loginType,String name,String phone,String password,
-			String idNumber,String sex,String department,String title){
+	public String userRegistDoctor(@RequestBody String regist){
+		JSONObject jsonObj =JSONObject.parseObject(regist);
+		String name=jsonObj.getString("name");
+		String age=jsonObj.getString("age");
+		String phone=jsonObj.getString("phone");
+		String password=jsonObj.getString("password");
+		String idNumber=jsonObj.getString("idNumber");
+		String sex=jsonObj.getString("sex");
+		String department=jsonObj.getString("department");
+		String title=jsonObj.getString("title");
 		JSONObject json = new JSONObject();
 		int success=1;
 		String errCode="";
@@ -117,4 +141,5 @@ public class UserController {
 		json.put("errCode", errCode);
 		return JSON.toJSONString(json);
 	}
+
 }
