@@ -50,9 +50,9 @@
         )
     </select>
     <!--医师修改患者挂号状态-->
-    <update id="updateRegisterStatus" parameterType="int">
+    <update id="updateRegisterStatus">
         update register set
-            Diagnostic State = #{i}
+            DiagnosticState = #{i}
         where DoctorId = #{d_id} and PatientId = #{p_id}
     </update>
 </mapper>
