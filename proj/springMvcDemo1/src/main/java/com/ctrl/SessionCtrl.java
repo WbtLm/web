@@ -64,13 +64,17 @@ public class SessionCtrl {
 			DBPatientAccount patientAccount=new DBPatientAccount();
 			patientAccount.setAccount(account);
 			patientAccount.setPassWord(password);
-			pADao.insertPatientAccount(patientAccount);
+			if(pADao.insertPatientAccount(patientAccount)==0) {
+				return "注册失败";
+			}
 		}
 		else if(type==2) {  //医生
 			DBDoctorAccount doctorAccount=new DBDoctorAccount();
 			doctorAccount.setAccount(account);
 			doctorAccount.setPassword(password);
-			dADao.insertDoctorAccount(doctorAccount);
+			if(dADao.insertDoctorAccount(doctorAccount)==0) {
+				return "注册失败";
+			}
 		}
 		else {
 			return "身份不存在";

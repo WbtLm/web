@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.ctrl.SessionCtrl;
 
 
 @Controller
@@ -30,5 +31,22 @@ public class UserController {
 		return "main";
 	}
 	
-
+	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
+	@RequestMapping(value = "user/login",method=RequestMethod.POST)
+	@ResponseBody
+	public String userLogin1(String account,String password,int type) {
+		JSONObject json = new JSONObject();
+		int success=1;
+		String errCode="";
+		String sessionID=sessionCtrl.getSIDbyLogin(type, account, password);
+		if(sessionCtrl.isCorrect(sessionID) != 0) {
+			errCode=sessionID;
+			success=0;
+		}
+		json.put("success", success);
+		json.put("sessionID", sessionID);
+		json.put("errCode", errCode);
+		return JSON.toJSONString(json);
+	}
+	
 }
