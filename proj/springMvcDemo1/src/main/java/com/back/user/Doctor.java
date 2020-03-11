@@ -81,11 +81,11 @@ public class Doctor {
 	}
 	public boolean updateRegStatusByPatientID(int patientUID,int statusTo) {
 		//Integer updateRegisterStatus(int d_id,int p_id,int i);
-		if(dao.updateRegisterStatus(this.getDBID(), patientUID, statusTo)==1) {
+		
+		if(dao.updateRegisterStatus(this.getDBID(), Patient.getDBIDbyBackID(patientUID), statusTo)==1) {
 			return true;
 		}
 		return false;
-
 	}
 	
 }

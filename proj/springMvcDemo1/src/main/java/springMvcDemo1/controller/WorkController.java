@@ -28,9 +28,9 @@ public class WorkController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value = "work/doctor/getPatientInfo",method=RequestMethod.GET)
+	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.GET)
 	@ResponseBody
-	public String workDoctorGetPatientInfo(String sIDString,String patientIDString) {
+	public String workDoctorGetPatientLst(String sIDString) {
 		int success=0;
 		JSONObject json = new JSONObject();
 		int uid = Utils.getBackUIDbySID(sIDString);
@@ -50,6 +50,38 @@ public class WorkController {
 		PatientInfo[] patientInfoLst  = doctor.getPatientList();
 		json.put("success", 1);
 		json.put("patientInfoLst",	patientInfoLst);
+		json.put("errCode","");
+		return json.toJSONString();
+	}
+	
+//	updateRegStatusByPatientID
+	
+	@RequestMapping(value = "work/doctor/setPatientCond",method=RequestMethod.GET)
+	@ResponseBody
+	public String workDoctorSetPatientCond(String sIDString,String patientIDString) {
+		JSONObject json = new JSONObject();
+		int uid = Utils.getBackUIDbySID(sIDString);
+		int patientID = Integer.valueOf(patientIDString);
+		boolean isDoctor = UserBasicInfo.isDoctorCapacity(sessionCtrl.getTypebySID(sIDString));
+		if (uid==0) {
+			json.put("success","0");
+			json.put("errCode", "user unlogin");
+			return json.toJSONString();
+		}
+		if(isDoctor==false) {
+			json.put("success", "0");
+			json.put("errCode","is not doctor");
+			return json.toJSONString();
+		}
+		Doctor doctor = new Doctor();
+		doctor.setUID(uid);
+		boolean ret  = doctor.updateRegStatusByPatientID(patientID,0);
+		if(ret==false) {
+			json.put("success", 0);
+			json.put("errCode","doctor.updateRegStatusByPatientID fail");
+			return json.toJSONString();
+		}
+		json.put("success", 1);
 		json.put("errCode","");
 		return json.toJSONString();
 	}

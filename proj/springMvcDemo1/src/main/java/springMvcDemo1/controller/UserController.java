@@ -70,7 +70,7 @@ public class UserController {
 			info.setAllergy(history);
 			if(sex.compareTo("man")==0)
 				info.setBoy();
-			else if(sex.compareTo("wonan")==0)
+			else if(sex.compareTo("woman")==0)
 				info.setGirl();
 			info.setHealthCareType(insurance);
 			info.setIDCard(idNumber);
@@ -102,7 +102,7 @@ public class UserController {
 			DoctorInfo info=new DoctorInfo();
 			if(sex.compareTo("man")==0)
 				info.setBoy();
-			else if(sex.compareTo("wonan")==0)
+			else if(sex.compareTo("woman")==0)
 				info.setGirl();
 			info.setIDCard(idNumber);
 			info.setTel(phone);
