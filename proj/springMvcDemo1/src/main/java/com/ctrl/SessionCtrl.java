@@ -17,6 +17,12 @@ public class SessionCtrl {
 		}
 		return encode(UID, type);
 	}
+	public int IsCorrect(String SID) {
+		if(map.containsValue(SID)) {
+			return 1;                       //是有效的SID 返回1
+		} 
+		return 0;
+	}
 	public int getUIDbySID(String SID) {
 		return Integer.parseInt(SID.substring(20));
 	}
@@ -25,6 +31,9 @@ public class SessionCtrl {
 	}
 	public String getSIDbyLogin(int type,String account,String password) {
 		int UID;
+		if(password.isEmpty()) {
+			return "Error";
+		}
 		if(type==1 && password.compareTo(pDao.getPatientPassword(account))!=0){
 			return "账号或密码错误";
 		}
