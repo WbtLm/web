@@ -9,10 +9,17 @@ import com.sun.xml.internal.bind.v2.model.core.Adapter;
 
 import java.util.List;
 
+import javax.sound.midi.MidiDevice.Info;
+
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import com.back.info.*;
 public class Doctor {
 	DoctorInfo info;
 	private DoctorDao dao;
+	public void setUID(int uidBack) {
+		this.info.setId(uidBack);
+	}
 	public static int getDBIDbyBackID(int doctorBackID) {
 		DoctorInfo pInfo = new DoctorInfo();
 		pInfo.setId(doctorBackID);

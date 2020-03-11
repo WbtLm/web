@@ -20,7 +20,7 @@ import com.entity.DBRegister;
 
 public class Patient {
 	PatientInfo info;
-	PatientDao dao;
+	static PatientDao dao;
 	RegisterDao registerDao;
 	HospitalDao hospitalDao;
 	CheckupDao checkupDao;
@@ -83,13 +83,25 @@ public class Patient {
 	 * @param deptID
 	 * @return
 	 */
-	public DoctorInfo[] getDoctorLstByDept(int deptID) {
+	static public DoctorInfo[] getDoctorLstByDept(int deptID) {
 		List<DBDoctor> docList = dao.getDoctorList();
 		DoctorInfo[] ret = new DoctorInfo[docList.size()];
+
+		int size=0;
 		for(int i=0;i<docList.size();i++) {
 			ret[i]=AdapterDB.doctorInfoEchoDB2Back(docList.get(i));
+			if(ret[i].getDepartmentID() == deptID) {
+				size++;
+			}
 		}
-		return ret;
+		DoctorInfo[] retInfos = new DoctorInfo[size];
+		int j=0;
+		for(int i=0;i<docList.size();i++) {
+			if(ret[i].getDepartmentID()==deptID) {
+				retInfos[j++] = ret[i];
+			}
+		}
+		return retInfos;
 	}
 //	预约体检
 	public boolean bookingHealthCheck(int type,int dateYear,int dateMonth,int dateDay) {
@@ -132,7 +144,7 @@ public class Patient {
 		return true;
 	}
 //	预约挂号
-	public boolean bookingDoctor(int doctorId,int dateYear,int dateMonth,int dateDay,int date,int state) {
+	public boolean bookingDoctor(int doctorId,int dateYear,int dateMonth,int dateDay,int state) {
 		if(info == null) {
 			return false;
 		}
@@ -146,6 +158,7 @@ public class Patient {
 		dbRegister.setPatientId(this.getDBID());
 		dbRegister.setDoctorId(Doctor.getDBIDbyBackID(doctorId));
 		dbRegister.setAppointmentTime(new Date(dateYear-1900,dateMonth-1,dateDay));
+		// state unused
 		dbRegister.setDiagnosticState(state);
 		
 		int ret = registerDao.insertRegister(dbRegister);
