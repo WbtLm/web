@@ -89,6 +89,9 @@ public class SessionCtrl {
 		return getSIDbyLogin(type, account, password);
 	}
 	private String encode(int UID,int type) {
+		if(UID==0 || type!=1 && type!=2) {
+			return "用户信息错误";
+		}
 		String code=new String();
 		Random r=new Random();
 		int a;

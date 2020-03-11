@@ -41,11 +41,24 @@ public class UserController {
 	@ResponseBody
 	public String userLogin1(@RequestBody String request) {	
 		JSONObject jsonObj =JSONObject.parseObject(request);
+		JSONObject json = new JSONObject();
 		String account=jsonObj.getString("account");
 		String password=jsonObj.getString("password");
-		int type=jsonObj.getIntValue("type");
+		int type;
+		if(jsonObj.getString("type").equals("user")) {
+			type=1;
+		}
+		else if(jsonObj.getString("type").equals("doctor")) {
+			type=2;
+		}
+		else {
+			json.put("success", 0);
+			json.put("sessionID", "");
+			json.put("errCode", "身份不存在");
+			return JSON.toJSONString(json);
+		}
 		
-		JSONObject json = new JSONObject();
+		
 		int success=1;
 		String errCode="";
 		String sessionID=sessionCtrl.getSIDbyLogin(type, account, password);
