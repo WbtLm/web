@@ -1,9 +1,12 @@
 package springMvcDemo1.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.jdbc.Null;
 //import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,37 +56,9 @@ public class UserController {
 	
 	@RequestMapping(value = "user/regist/patient",method=RequestMethod.POST)
 	@ResponseBody
-	public String userRegistPatient(String loginType,String name,String age,String phone,String password,
-			String idNumber,String history,String insurance,String sex) {
-		JSONObject json = new JSONObject();
-		int success=1;
-		String errCode="";
-		String sessionID=sessionCtrl.getSIDbyRegist(1, phone, password);
-		if(sessionCtrl.isCorrect(sessionID) == 0 ){
-			errCode=sessionID;
-			success=0;
-		}
-		else {
-			Patient patient=new Patient();
-			PatientInfo info=new PatientInfo();
-			info.setAge(Integer.parseInt(age));
-			info.setAllergy(history);
-			if(sex.compareTo("man")==0)
-				info.setBoy();
-			else if(sex.compareTo("woman")==0)
-				info.setGirl();
-			info.setHealthCareType(insurance);
-			info.setIDCard(idNumber);
-			info.setName(name);
-			info.setTel(phone);
-			patient.setUID(Patient.getBackIDbyDBID(sessionCtrl.getUIDbySID(sessionID)));
-			patient.setInfo(info);
-			patient.updateInfo();
-		}
-		json.put("success", success);
-		json.put("sessionID", sessionID);
-		json.put("errCode", errCode);
-		return JSON.toJSONString(json);
+	public String userRegistPatient(@RequestBody String name) {
+		System.out.println("name="+name);
+		return ""; 
 	}
 	@RequestMapping(value = "user/regist/doctor",method=RequestMethod.POST)
 	@ResponseBody
