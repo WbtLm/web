@@ -17,7 +17,7 @@ public class SessionCtrl {
 		}
 		return encode(UID, type);
 	}
-	public int IsCorrect(String SID) {
+	public int isCorrect(String SID) {
 		if(map.containsValue(SID)) {
 			return 1;                       //是有效的SID 返回1
 		} 
