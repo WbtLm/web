@@ -12,7 +12,7 @@ public class DoctorInfo extends UserBasicInfo{
 	public int getDepartmentID() {
 		return departmentID;
 	}
-	public void setDepartmentID(int departmentId) {
+	public void setDepartmentID(int departmentID) {
 		this.departmentID = departmentID;
 	}
 	public String getTitle() {

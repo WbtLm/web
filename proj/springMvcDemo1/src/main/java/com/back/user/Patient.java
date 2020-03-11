@@ -24,6 +24,9 @@ public class Patient {
 	RegisterDao registerDao;
 	HospitalDao hospitalDao;
 	CheckupDao checkupDao;
+	public void setUID(int backID) {
+		info.setId(backID);
+	}
 	public Patient() {
 		// TODO Auto-generated constructor stub
 		info = new PatientInfo();
@@ -33,6 +36,11 @@ public class Patient {
 		pInfo.setId(patientBackID);
 		DBPatient dbPatient = AdapterDB.patientInfoEchoBack2DB(pInfo);//echo (back id to db id)
 		return dbPatient.getId();
+	}
+	public static int getBackIDbyDBID(int patientDBID) {
+		DBPatient dbPatient = new DBPatient();
+		dbPatient.setId(patientDBID);
+		return AdapterDB.patientInfoEchoDB2Back(dbPatient).getId();
 	}
 	public int getDBID() {
 		if(info!=null) {
