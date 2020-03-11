@@ -81,7 +81,7 @@ public class SessionCtrl {
 		String code=new String();
 		Random r=new Random();
 		int a;
-		code+=(char)type;
+		code+=new Integer(type).toString();
 		for(int i=0;i<20;i++) {
 			a=r.nextInt(126-48+1)+48;
 			code+=(char)a;
