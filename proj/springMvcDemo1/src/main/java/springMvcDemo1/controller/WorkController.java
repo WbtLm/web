@@ -20,6 +20,11 @@ public class WorkController {
 	public String workPatientGetDoctorLst(String departmentIDstr) {
 		int success=0;
 		JSONObject json = new JSONObject();
+		if(departmentIDstr==null) {
+			json.put("success","0");
+			json.put("errCode", "arg==null");
+			return json.toJSONString();
+		}
 		int deptID = Integer.valueOf(departmentIDstr);
 		DoctorInfo[] doctorInfo = Patient.getDoctorLstByDept(deptID);
 		json.put("success","1");
@@ -31,8 +36,13 @@ public class WorkController {
 	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.GET)
 	@ResponseBody
 	public String workDoctorGetPatientLst(String sIDString) {
-		int success=0;
+		
 		JSONObject json = new JSONObject();
+		if(sIDString==null) {
+			json.put("success","0");
+			json.put("errCode", "arg==null");
+			return json.toJSONString();
+		}
 		int uid = Utils.getBackUIDbySID(sIDString);
 		boolean isDoctor = UserBasicInfo.isDoctorCapacity(sessionCtrl.getTypebySID(sIDString));
 		if (uid==0) {

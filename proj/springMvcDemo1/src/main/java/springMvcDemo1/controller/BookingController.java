@@ -25,7 +25,11 @@ public class BookingController {
 		String bedID="";
 		String errCodeString = "";
 		JSONObject json = new JSONObject();
-		
+		if(sidStr==null || docUIDstr ==null || yearString == null || monthString == null || dayString == null) {
+			json.put("success","0");
+			json.put("errCode", "arg == null");
+			return json.toJSONString();
+		}
 		int year = Integer.valueOf(yearString);
 		int month = Integer.valueOf(monthString);
 		int day = Integer.valueOf(dayString);
@@ -67,7 +71,11 @@ public class BookingController {
 		String bedID="";
 		String errCodeString = "";
 		JSONObject json = new JSONObject();
-		
+		if(sidStr==null || docUIDstr ==null || yearString == null || monthString == null || dayString == null) {
+			json.put("success","0");
+			json.put("errCode", "arg == null");
+			return json.toJSONString();
+		}
 		int year = Integer.valueOf(yearString);
 		int month = Integer.valueOf(monthString);
 		int day = Integer.valueOf(dayString);
@@ -109,7 +117,11 @@ public class BookingController {
 		String bedID="";
 		String errCodeString = "";
 		JSONObject json = new JSONObject();
-		
+		if(sidStr==null || checkTypeStr ==null || yearString == null || monthString == null || dayString == null) {
+			json.put("success","0");
+			json.put("errCode", "arg == null");
+			return json.toJSONString();
+		}
 		int year = Integer.valueOf(yearString);
 		int month = Integer.valueOf(monthString);
 		int day = Integer.valueOf(dayString);
