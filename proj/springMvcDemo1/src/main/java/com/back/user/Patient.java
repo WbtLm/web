@@ -167,4 +167,21 @@ public class Patient {
 		}
 		return true;
 	}
+//  查询体检
+	public DBAppointCheckUp queryHealthCheckInfo() {
+		return checkupDao.selectCheckupById(Patient.getDBIDbyBackID(info.getId()));
+	}
+	
+//  查询住院
+	public DBHospital querySickBedInfo() {
+		return hospitalDao.InselectHospitalById(Patient.getDBIDbyBackID(info.getId()));
+	}
+	
+//  查询挂号
+	public DBRegister queryDoctorInfo() {
+		return registerDao.selectRegisterById(Patient.getDBIDbyBackID(info.getId()));
+	}
+	
+//  查询结果
+//	public HealthCheckResult
 }
