@@ -39,7 +39,12 @@ public class UserController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
 	@RequestMapping(value = "user/login",method=RequestMethod.POST)
 	@ResponseBody
-	public String userLogin1(String account,String password,int type) {
+	public String userLogin1(@RequestBody String request) {	
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String account=jsonObj.getString("account");
+		String password=jsonObj.getString("password");
+		int type=jsonObj.getIntValue("type");
+		
 		JSONObject json = new JSONObject();
 		int success=1;
 		String errCode="";

@@ -1,6 +1,8 @@
 package springMvcDemo1.controller;
 
+import org.apache.catalina.ant.JKStatusUpdateTask;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +25,14 @@ public class BookingController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
 	@RequestMapping(value = "booking/regist/sickbed",method=RequestMethod.GET)
 	@ResponseBody
-	public String bookingRegistSickbed(String sidStr,String docUIDstr,String yearString,String monthString,String dayString) {
+	public String bookingRegistSickbed(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		
+		String sidStr=jsonObj.getString("sidStr");
+		String docUIDstr=jsonObj.getString("docUIDstr");
+		String yearString=jsonObj.getString("yearString");
+		String monthString=jsonObj.getString("monthString");
+		String dayString=jsonObj.getString("dayString");
 		int success=0;
 		String bedID="";
 		String errCodeString = "";
@@ -69,7 +78,13 @@ public class BookingController {
 	
 	@RequestMapping(value = "booking/regist/doctor",method=RequestMethod.GET)
 	@ResponseBody
-	public String bookingRegistDoctor(String sidStr,String docUIDstr,String yearString,String monthString,String dayString) {
+	public String bookingRegistDoctor(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String sidStr=jsonObj.getString("sidStr");
+		String docUIDstr=jsonObj.getString("docUIDstr");
+		String yearString=jsonObj.getString("yearString");
+		String monthString=jsonObj.getString("monthString");
+		String dayString=jsonObj.getString("dayString");
 		int success=0;
 		String bedID="";
 		String errCodeString = "";
@@ -115,7 +130,13 @@ public class BookingController {
 	
 	@RequestMapping(value = "booking/regist/healthCheck",method=RequestMethod.GET)
 	@ResponseBody
-	public String bookingRegistHealthCheck(String sidStr,String checkTypeStr,String yearString,String monthString,String dayString) {
+	public String bookingRegistHealthCheck(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String sidStr=jsonObj.getString("sidStr");
+		String checkTypeStr=jsonObj.getString("checkTypeStr");
+		String yearString=jsonObj.getString("yearString");
+		String monthString=jsonObj.getString("monthString");
+		String dayString=jsonObj.getString("dayString");
 		int success=0;
 		String bedID="";
 		String errCodeString = "";
@@ -161,7 +182,10 @@ public class BookingController {
 	
 	@RequestMapping(value = "booking/query/sickbedInfo",method=RequestMethod.GET)
 	@ResponseBody
-	public String bookingQuerySickbedInfo(String sessionID) {
+	public String bookingQuerySickbedInfo(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		
+		String sessionID=jsonObj.getString("sessionID");
 		int success=1;
 		String errCode="";
 		JSONObject json = new JSONObject();
@@ -198,7 +222,9 @@ public class BookingController {
 	}
 	@RequestMapping(value = "booking/query/doctorInfo",method=RequestMethod.GET)
 	@ResponseBody
-	public String bookingQueryDcotorInfo(String sessionID) {
+	public String bookingQueryDcotorInfo(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String sessionID=jsonObj.getString("sessionID");
 		int success=1;
 		String errCode="";
 		JSONObject json = new JSONObject();
@@ -241,7 +267,9 @@ public class BookingController {
 	}
 	@RequestMapping(value = "booking/query/healthCheckInfo",method=RequestMethod.GET)
 	@ResponseBody
-	public String bookingQueryHealthCheckInfo(String sessionID) {
+	public String bookingQueryHealthCheckInfo(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String sessionID=jsonObj.getString("sessionID");
 		int success=1;
 		String errCode="";
 		JSONObject json = new JSONObject();

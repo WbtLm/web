@@ -1,5 +1,6 @@
 package springMvcDemo1.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +18,11 @@ public class WorkController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
 	@RequestMapping(value = "work/patient/getDoctorLst",method=RequestMethod.GET)
 	@ResponseBody
-	public String workPatientGetDoctorLst(String departmentIDstr) {
+	public String workPatientGetDoctorLst(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		
+		String departmentIDstr=jsonObj.getString("departmentIDstr");
+		
 		int success=0;
 		JSONObject json = new JSONObject();
 		if(departmentIDstr==null) {
@@ -35,8 +40,9 @@ public class WorkController {
 	
 	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.GET)
 	@ResponseBody
-	public String workDoctorGetPatientLst(String sIDString) {
-		
+	public String workDoctorGetPatientLst(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String sIDString=jsonObj.getString("sIDString");
 		JSONObject json = new JSONObject();
 		if(sIDString==null) {
 			json.put("success","0");
@@ -68,7 +74,10 @@ public class WorkController {
 	
 	@RequestMapping(value = "work/doctor/setPatientCond",method=RequestMethod.GET)
 	@ResponseBody
-	public String workDoctorSetPatientCond(String sIDString,String patientIDString) {
+	public String workDoctorSetPatientCond(@RequestBody String request) {
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		String sIDString=jsonObj.getString("sIDString");
+		String patientIDString=jsonObj.getString("patientIDString");
 		JSONObject json = new JSONObject();
 		int uid = Utils.getBackUIDbySID(sIDString);
 		int patientID = Integer.valueOf(patientIDString);
