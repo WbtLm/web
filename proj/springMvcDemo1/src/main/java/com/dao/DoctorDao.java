@@ -1,6 +1,7 @@
 package com.dao;
 import com.entity.DBDoctor;
 import com.entity.DBPatient;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface DoctorDao {
     /*
         医师修改患者挂号状态 ,i为挂号状态
     */
-    Integer updateRegisterStatus(int d_id,int p_id,int i);
+    Integer updateRegisterStatus(@Param("d_id") int d_id,@Param("p_id") int p_id,@Param("i") int i);
     
     
 }

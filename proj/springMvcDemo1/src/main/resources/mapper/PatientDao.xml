@@ -12,7 +12,7 @@
             Name,
             Sex,
             Age,
-            Allergy,
+            Allergy
         )values (
             #{idNumber},
             #{healthCareType},
@@ -20,7 +20,7 @@
             #{sex},
             #{age},
             #{allergy}
-        )
+        );
     </insert>
     <!--更新患者信息-->
     <update id="updatePatient" parameterType="DBPatient">
@@ -30,7 +30,7 @@
             Name = #{name},
             Sex = #{sex},
             Age = #{age},
-            Allergy = #{allergy},
+            Allergy = #{allergy}
         where
             PatientId = #{id}
     </update>
