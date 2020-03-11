@@ -59,7 +59,7 @@ public class UserController {
 	public String userRegistPatient(@RequestBody String name) {
 		System.out.println("name="+name);
 		return ""; 
-	}
+	} 
 	@RequestMapping(value = "user/regist/doctor",method=RequestMethod.POST)
 	@ResponseBody
 	public String userRegistDoctor(String loginType,String name,String phone,String password,
