@@ -6,11 +6,16 @@ import com.entity.*;
 
 public class SessionCtrl {
 	HashMap<Integer, String> map=new HashMap<Integer, String>();
+	private static SessionCtrl instance = new SessionCtrl();
 	private DoctorDao dDao;
 	private PatientDao pDao;
 	private DoctorAccountDao dADao;
 	private PatientAccountDao pADao;
 	
+	private SessionCtrl() {}
+	public static SessionCtrl getInstance() {
+		return instance;
+	}
 	public String getSIDbyUID(int UID,int type) {
 		if(map.containsKey(UID)) {
 			return map.get(UID);
