@@ -1,15 +1,22 @@
 package com.ctrl;
 
 import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.dao.*;
 import com.entity.*;
 
 public class SessionCtrl {
 	HashMap<Integer, String> map=new HashMap<Integer, String>();
 	private static SessionCtrl instance = new SessionCtrl();
+	@Autowired
 	private DoctorDao dDao;
+	@Autowired
 	private PatientDao pDao;
+	@Autowired
 	private DoctorAccountDao dADao;
+	@Autowired
 	private PatientAccountDao pADao;
 	
 	private SessionCtrl() {}
@@ -35,7 +42,7 @@ public class SessionCtrl {
 		return (int)SID.indexOf(0);
 	}
 	public String getSIDbyLogin(int type,String account,String password) {
-		int UID;
+		int UID=0;
 		if(password.isEmpty()) {
 			return "Error";
 		}
