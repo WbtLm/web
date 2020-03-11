@@ -30,7 +30,7 @@
             Name = #{name},
             Sex = #{sex},
             Age = #{age},
-            Title = #{allergy},
+            Title = #{allergy}
         where
             DoctorId = #{id}
     </update>
