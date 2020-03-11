@@ -1,6 +1,7 @@
 package com.back.user;
 
 import com.dao.DoctorDao;
+
 import com.entity.DBDoctor;
 import com.entity.DBPatient;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
@@ -17,6 +18,11 @@ public class Doctor {
 		pInfo.setId(doctorBackID);
 		DBDoctor dbDoctor = AdapterDB.doctorInfoEchoBack2DB(pInfo);//echo (back id to db id)
 		return dbDoctor.getId();
+	}
+	public static int getBackIDbyDBID(int doctorDBID) {
+		DBDoctor dbDoctor = new DBDoctor();
+		dbDoctor.setId(doctorDBID);
+		return AdapterDB.doctorInfoEchoDB2Back(dbDoctor).getId();
 	}
 	public int getDBID() {
 		if(info!=null) {

@@ -17,7 +17,12 @@ abstract public class UserBasicInfo implements Cloneable{
      * ��ݣ�patient/doctor  1/2
      */ 
     private int capacity;
-   
+    static public boolean isDoctorCapacity(int type) {
+    	return type==2;
+    }
+    static public boolean isPatientCapacity(int type) {
+    	return type==1;
+    }
     public void deleteIDCard() {
     	IDCard=null;
     }
