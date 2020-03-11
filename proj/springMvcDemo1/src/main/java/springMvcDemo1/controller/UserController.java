@@ -56,64 +56,14 @@ public class UserController {
 	
 	@RequestMapping(value = "user/regist/patient",method=RequestMethod.POST)
 	@ResponseBody
-<<<<<<< HEAD
 	public String userRegistPatient(@RequestBody String name) {
 		System.out.println("name="+name);
 		return ""; 
-=======
-	public String userRegistPatient(@RequestBody String regist) {
-		JSONObject jsonObj =JSONObject.parseObject(regist);
-		String name=jsonObj.getString("name");
-		String age=jsonObj.getString("age");
-		String phone=jsonObj.getString("phone");
-		String password=jsonObj.getString("password");
-		String idNumber=jsonObj.getString("idNumber");
-		String history=jsonObj.getString("history");
-		String insurance=jsonObj.getString("insurance");
-		String sex=jsonObj.getString("sex");
-		JSONObject json = new JSONObject();
-		int success=1;
-		String errCode="";
-		String sessionID=sessionCtrl.getSIDbyRegist(1, phone, password);
-		if(sessionCtrl.isCorrect(sessionID) == 0 ){
-			errCode=sessionID;
-			success=0;
-		}
-		else {
-			Patient patient=new Patient();
-			PatientInfo info=new PatientInfo();
-			info.setAge(Integer.parseInt(age));
-			info.setAllergy(history);
-			if(sex.compareTo("man")==0)
-				info.setBoy();
-			else if(sex.compareTo("woman")==0)
-				info.setGirl();
-			info.setHealthCareType(insurance);
-			info.setIDCard(idNumber);
-			info.setName(name);
-			info.setTel(phone);
-			patient.setUID(Patient.getBackIDbyDBID(sessionCtrl.getUIDbySID(sessionID)));
-			patient.setInfo(info);
-			patient.updateInfo();
-		}
-		json.put("success", success);
-		json.put("sessionID", sessionID);
-		json.put("errCode", errCode);
-		return JSON.toJSONString(json);
->>>>>>> 47e73b938926d6e0605b6ba3a0f3ad4cff9da2aa
 	}
 	@RequestMapping(value = "user/regist/doctor",method=RequestMethod.POST)
 	@ResponseBody
-	public String userRegistDoctor(@RequestBody String regist){
-		JSONObject jsonObj =JSONObject.parseObject(regist);
-		String name=jsonObj.getString("name");
-		String age=jsonObj.getString("age");
-		String phone=jsonObj.getString("phone");
-		String password=jsonObj.getString("password");
-		String idNumber=jsonObj.getString("idNumber");
-		String sex=jsonObj.getString("sex");
-		String department=jsonObj.getString("department");
-		String title=jsonObj.getString("title");
+	public String userRegistDoctor(String loginType,String name,String phone,String password,
+			String idNumber,String sex,String department,String title){
 		JSONObject json = new JSONObject();
 		int success=1;
 		String errCode="";
