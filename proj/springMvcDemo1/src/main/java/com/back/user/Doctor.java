@@ -1,7 +1,9 @@
 package com.back.user;
 
+import com.dao.DoctorAccountDao;
 import com.dao.DoctorDao;
-
+import com.dao.PatientAccountDao;
+import com.dao.PatientDao;
 import com.entity.DBDoctor;
 import com.entity.DBPatient;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
@@ -12,6 +14,8 @@ import java.util.List;
 import javax.sound.midi.MidiDevice.Info;
 
 import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.back.info.*;
 public class Doctor {
@@ -41,6 +45,8 @@ public class Doctor {
 	public Doctor() {
 		// TODO Auto-generated constructor stub
 		info = new DoctorInfo();
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring_context.xml");
+		dao = (DoctorDao) ctx.getBean("doctorDao");
 	}
 	public DoctorInfo getInfo() {
 		return info;
@@ -60,6 +66,15 @@ public class Doctor {
 		else {
 			return true;
 		}
+	}
+	public boolean insertInfo() {
+//		Integer insertPatient(DBPatient patient);
+		if(info==null)
+			return false;
+		if(dao.insertDoctor(AdapterDB.doctorInfoEchoBack2DB(this.info))==0) {
+			return false;
+		}
+		return true;
 	}
 	public boolean updateInfo() {
 		if(info==null) {

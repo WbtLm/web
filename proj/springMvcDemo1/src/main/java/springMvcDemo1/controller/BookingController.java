@@ -23,7 +23,7 @@ import ch.qos.logback.classic.pattern.Util;
 @Controller
 public class BookingController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
-	@RequestMapping(value = "booking/regist/sickbed",method=RequestMethod.GET)
+	@RequestMapping(value = "booking/regist/sickbed",method=RequestMethod.POST)
 	@ResponseBody
 	public String bookingRegistSickbed(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);

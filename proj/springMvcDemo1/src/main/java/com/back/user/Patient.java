@@ -3,13 +3,18 @@ package com.back.user;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jmx.export.naming.IdentityNamingStrategy;
 
 import com.back.info.AdapterDB;
 import com.back.info.DoctorInfo;
 import com.back.info.PatientInfo;
 import com.dao.CheckupDao;
+import com.dao.DoctorAccountDao;
+import com.dao.DoctorDao;
 import com.dao.HospitalDao;
+import com.dao.PatientAccountDao;
 import com.dao.PatientDao;
 import com.dao.RegisterDao;
 import com.entity.DBAppointCheckUp;
@@ -30,6 +35,8 @@ public class Patient {
 	public Patient() {
 		// TODO Auto-generated constructor stub
 		info = new PatientInfo();
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring_context.xml");
+		dao = (PatientDao) ctx.getBean("patientDao");
 	}
 	public static int getDBIDbyBackID(int patientBackID) {
 		PatientInfo pInfo = new PatientInfo();
@@ -68,6 +75,15 @@ public class Patient {
 		else {
 			return true;
 		}
+	}
+	public boolean insertInfo() {
+//		Integer insertPatient(DBPatient patient);
+		if(info==null)
+			return false;
+		if(dao.insertPatient(AdapterDB.patientInfoEchoBack2DB(this.info))==0) {
+			return false;
+		}
+		return true;
 	}
 	public boolean updateInfo() {
 		if(info==null) {

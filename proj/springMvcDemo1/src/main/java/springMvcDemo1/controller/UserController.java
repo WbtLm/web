@@ -18,24 +18,17 @@ import com.ctrl.SessionCtrl;
 import com.back.info.DoctorInfo;
 import com.back.info.PatientInfo;
 import com.back.user.*;
-
+import com.dao.PatientAccountDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.dao.*;
 @Controller
 public class UserController {
-
-	/**
-	 * 用户登录的处理函数
-	 * @param userAccount 用于接收用户提交信息的参数  请求参数和函数参数名相同
-	 * @return
-	 */
-	@RequestMapping( value = "/user/getInfo",method=RequestMethod.GET)
-	@ResponseBody
-	public String userLogin(String userAccount,String userPass,Model model) {
-		System.out.println("user ctrl");
-		model.addAttribute("name",userAccount);
-		model.addAttribute("passwd",userPass);
-		return "main";
+	@Autowired
+	private PatientDao pDao;
+	public String getPatientPassword(String account){
+		return pDao.getPatientPassword(account);
 	}
-	
+
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
 	@RequestMapping(value = "user/login",method=RequestMethod.POST)
 	@ResponseBody
@@ -66,9 +59,11 @@ public class UserController {
 			errCode=sessionID;
 			success=0;
 		}
+		
 		json.put("success", success);
 		json.put("sessionID", sessionID);
 		json.put("errCode", errCode);
+		System.out.println(JSON.toJSONString(json));
 		return JSON.toJSONString(json);
 	}
 	
@@ -113,6 +108,7 @@ public class UserController {
 		json.put("success", success);
 		json.put("sessionID", sessionID);
 		json.put("errCode", errCode);
+		System.out.println(JSON.toJSONString(json));
 		return JSON.toJSONString(json);
 	}
 	@RequestMapping(value = "user/regist/doctor",method=RequestMethod.POST)
