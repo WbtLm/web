@@ -12,10 +12,10 @@ public class AdapterDB {
 		retDoctorInfo.setName(db.getName());
 		retDoctorInfo.setDepartmentID(db.getDepartmentId());
 		retDoctorInfo.setTitle(db.getTitle());
-		if(db.getSex().equals("男")) {
+		if(db.getSex()!=null && db.getSex().equals("男")) {
 			retDoctorInfo.setBoy();
 		}
-		else if(db.getSex().equals("女")){
+		else if(db.getSex()!=null && db.getSex().equals("女")){
 			retDoctorInfo.setGirl();
 		}
 		else {
@@ -54,10 +54,10 @@ public class AdapterDB {
 		retPatientInfo.setName(db.getName());
 		retPatientInfo.setIDCard(db.getIdNumber());
 		retPatientInfo.deleteTel();
-		if(db.getSex().equals("男")) {
+		if(db.getSex()!=null && db.getSex().equals("男")) {
 			retPatientInfo.setBoy();
 		}
-		else if(db.getSex().equals("女")){
+		else if(db.getSex()!=null && db.getSex().equals("女")){
 			retPatientInfo.setGirl();
 		}
 		else {
