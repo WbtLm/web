@@ -106,14 +106,14 @@ public class Patient {
 		int size=0;
 		for(int i=0;i<docList.size();i++) {
 			ret[i]=AdapterDB.doctorInfoEchoDB2Back(docList.get(i));
-			if(ret[i].getDepartmentID() == deptID) {
+			if(ret[i].getDepartmentID() == deptID || deptID==1000) {
 				size++;
 			}
 		}
 		DoctorInfo[] retInfos = new DoctorInfo[size];
 		int j=0;
 		for(int i=0;i<docList.size();i++) {
-			if(ret[i].getDepartmentID()==deptID) {
+			if(ret[i].getDepartmentID()==deptID || deptID == 1000) {
 				retInfos[j++] = ret[i];
 			}
 		}
@@ -124,11 +124,7 @@ public class Patient {
 		if(info==null) {
 			return false;
 		}
-//		Integer insertCheckup(DBAppointCheckUp checkup);
-//		int id;
-//		int patientId;
-//		int typeId;
-//		Date appointmentTime;
+
 		DBAppointCheckUp dbAppointCheckUp = new DBAppointCheckUp();
 		dbAppointCheckUp.setPatientId(this.getDBID());
 		dbAppointCheckUp.setTypeId(type);
@@ -144,11 +140,6 @@ public class Patient {
 		if(info==null) {
 			return false;
 		}
-//		Integer insertHospital(DBHospital hospital);
-//		int inHospitalId;
-//		int patientId;
-//		int doctorId;
-//		Date appointmentTime;
 		DBHospital dbHospital = new DBHospital();
 		dbHospital.setPatientId(this.getDBID());
 		dbHospital.setDoctorId(Doctor.getDBIDbyBackID(doctorID));
@@ -164,12 +155,6 @@ public class Patient {
 		if(info == null) {
 			return false;
 		}
-//		Integer insertRegister(DBRegister register);
-//		int id;
-//		int patientId;
-//		int doctorId;
-//		Date appointmentTime;
-//		int diagnosticState;
 		DBRegister dbRegister = new DBRegister();
 		dbRegister.setPatientId(this.getDBID());
 		dbRegister.setDoctorId(Doctor.getDBIDbyBackID(doctorId));

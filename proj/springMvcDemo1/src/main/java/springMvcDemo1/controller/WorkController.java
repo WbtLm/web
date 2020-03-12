@@ -16,7 +16,7 @@ import com.ctrl.Utils;
 
 public class WorkController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
-	@RequestMapping(value = "work/patient/getDoctorLst",method=RequestMethod.GET)
+	@RequestMapping(value = "work/patient/getDoctorLst",method=RequestMethod.POST)
 	@ResponseBody
 	public String workPatientGetDoctorLst(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -38,7 +38,7 @@ public class WorkController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.GET)
+	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.POST)
 	@ResponseBody
 	public String workDoctorGetPatientLst(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -72,7 +72,7 @@ public class WorkController {
 	
 //	updateRegStatusByPatientID
 	
-	@RequestMapping(value = "work/doctor/setPatientCond",method=RequestMethod.GET)
+	@RequestMapping(value = "work/doctor/setPatientCond",method=RequestMethod.POST)
 	@ResponseBody
 	public String workDoctorSetPatientCond(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);

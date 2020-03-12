@@ -96,7 +96,9 @@ public class SessionCtrl {
 			DBPatientAccount patientAccount=new DBPatientAccount();
 			patientAccount.setAccount(account);
 			patientAccount.setPassWord(password);
-			
+			if(pDao.getPatientPassword(account)!=null) {
+				return "注册失败，重复注册";
+			}
 			if(pADao.insertPatientAccount(patientAccount)==0) {
 				return "注册失败：新建账户失败";
 			}
@@ -113,6 +115,9 @@ public class SessionCtrl {
 			DBDoctorAccount doctorAccount=new DBDoctorAccount();
 			doctorAccount.setAccount(account);
 			doctorAccount.setPassword(password);
+			if(dDao.getDoctorPassword(account)!=null) {
+				return "注册失败，重复注册";
+			}
 			if(dADao.insertDoctorAccount(doctorAccount)==0) {
 				return "注册失败：新建账户失败";
 			}

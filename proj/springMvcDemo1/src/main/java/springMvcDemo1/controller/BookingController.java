@@ -76,7 +76,7 @@ public class BookingController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value = "booking/regist/doctor",method=RequestMethod.GET)
+	@RequestMapping(value = "booking/regist/doctor",method=RequestMethod.POST)
 	@ResponseBody
 	public String bookingRegistDoctor(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -128,7 +128,7 @@ public class BookingController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value = "booking/regist/healthCheck",method=RequestMethod.GET)
+	@RequestMapping(value = "booking/regist/healthCheck",method=RequestMethod.POST)
 	@ResponseBody
 	public String bookingRegistHealthCheck(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -180,7 +180,7 @@ public class BookingController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value = "booking/query/sickbedInfo",method=RequestMethod.GET)
+	@RequestMapping(value = "booking/query/sickbedInfo",method=RequestMethod.POST)
 	@ResponseBody
 	public String bookingQuerySickbedInfo(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -220,7 +220,7 @@ public class BookingController {
 			return json.toJSONString();
 		}
 	}
-	@RequestMapping(value = "booking/query/doctorInfo",method=RequestMethod.GET)
+	@RequestMapping(value = "booking/query/doctorInfo",method=RequestMethod.POST)
 	@ResponseBody
 	public String bookingQueryDcotorInfo(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -265,7 +265,7 @@ public class BookingController {
 			return json.toJSONString();
 		}
 	}
-	@RequestMapping(value = "booking/query/healthCheckInfo",method=RequestMethod.GET)
+	@RequestMapping(value = "booking/query/healthCheckInfo",method=RequestMethod.POST)
 	@ResponseBody
 	public String bookingQueryHealthCheckInfo(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
