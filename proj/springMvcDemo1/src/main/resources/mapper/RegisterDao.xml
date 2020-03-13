@@ -13,6 +13,6 @@
     </insert>
     <!--查询挂号信息-->
     <select id="selectRegisterById" parameterType="int" resultType="DBRegister">
-        select * from register where PatientId = #{id};
+        select * from register where PatientId = #{id} order by RegisteredId desc limit 1;
     </select>
 </mapper>

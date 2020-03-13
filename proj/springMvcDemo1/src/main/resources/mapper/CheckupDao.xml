@@ -13,6 +13,6 @@
     </insert>
     <!--查询体检信息-->
     <select id="selectCheckupById" parameterType="int" resultType="DBAppointCheckUp">
-        select * from appointcheckup where PatientId = #{id};
+        select * from appointcheckup where PatientId = #{id} order by CheckUpId desc limit 1;
     </select>
 </mapper>
