@@ -106,12 +106,20 @@ public class SessionCtrl {
 			}
 			
 			int UID=pADao.getIdByAccount(account);
+			if(UID==0) {
+				Utils.log("error:pADao.getIDByAccount() UID==0");
+				return "error:pADao.getIDByAccount() UID==0";
+			}
 			PatientInfo pInfo = new PatientInfo();
 			UID=Patient.getBackIDbyDBID(UID);
 			pInfo.setId(UID);
 			Patient patient = new Patient();
 			patient.setInfo(pInfo);
-			patient.insertInfo();
+			boolean ret = patient.insertInfo();
+			if(ret == false) {
+				Utils.log("error:account establish success but: info failed");
+				return "error:account establish success but: info failed";
+			}
 		}
 		else if(type==2) {  //医生
 			DBDoctorAccount doctorAccount=new DBDoctorAccount();
@@ -127,9 +135,17 @@ public class SessionCtrl {
 			DoctorInfo dInfo = new DoctorInfo();
 			UID=Doctor.getBackIDbyDBID(UID);
 			dInfo.setId(UID);
+			if(UID==0) {
+				Utils.log("error:pADao.getIDByAccount() UID==0");
+				return "error:pADao.getIDByAccount() UID==0";
+			}
 			Doctor doctor = new Doctor();
 			doctor.setInfo(dInfo);
-			doctor.insertInfo();
+			boolean ret = doctor.insertInfo();
+			if(ret == false) {
+				Utils.log("error:account establish success but: info failed");
+				return "error:account establish success but: info failed";
+			}
 		}
 		else {
 			return "身份不存在";

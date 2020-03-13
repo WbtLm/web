@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ctrl.SessionCtrl;
+import com.ctrl.Utils;
 import com.back.info.DoctorInfo;
 import com.back.info.PatientInfo;
 import com.back.user.*;
@@ -44,6 +45,8 @@ public class UserController {
 			json.put("success", 0);
 			json.put("info", "{}");
 			json.put("errCode", "登录状态异常：sessionID invalid");
+			Utils.log(JSON.toJSONString(json));
+
 			return JSON.toJSONString(json);
 		}
 		if(type==1) {
@@ -54,13 +57,14 @@ public class UserController {
 				json.put("success", 0);
 				json.put("info", "{}");
 				json.put("errCode", "数据库获取info失败");
+				Utils.log(JSON.toJSONString(json));
 				return json.toJSONString(json);
 			}
 			json.put("success", 1);
 			json.put("info", patient.getInfo());
 			json.put("errCode", "");
 		}
-		else {
+		else if(type==2){
 			Doctor doctor = new Doctor();
 			doctor.setUID(uid);
 			boolean ret = doctor.selectInfo();
@@ -68,13 +72,19 @@ public class UserController {
 				json.put("success", 0);
 				json.put("info", "{}");
 				json.put("errCode", "数据库获取info失败");
+				Utils.log(JSON.toJSONString(json));
 				return json.toJSONString(json);
 			}
 			json.put("success", 1);
 			json.put("info", doctor.getInfo());
 			json.put("errCode", "");
 		}
-		System.out.println(JSON.toJSONString(json));
+		else {
+			json.put("success", 1);
+			json.put("info", "{}");
+			json.put("errCode", "error:sex invalid");
+		}
+		Utils.log(JSON.toJSONString(json));
 		return JSON.toJSONString(json);
 	}
 	@RequestMapping(value = "user/login",method=RequestMethod.POST)
@@ -148,9 +158,17 @@ public class UserController {
 			info.setIDCard(idNumber);
 			info.setName(name);
 			info.setTel(phone);
+			int uidBack = sessionCtrl.getUIDbySID(sessionID);
+			info.setId(uidBack);
 			patient.setUID(Patient.getBackIDbyDBID(sessionCtrl.getUIDbySID(sessionID)));
 			patient.setInfo(info);
-			patient.updateInfo();
+			boolean ret = patient.updateInfo();
+			if(ret==false) {
+				Utils.log("regist:updateInfo failed:backUid="+info.getId()+" ");
+				success = 0;
+				sessionID = "";
+				errCode="regist:updateInfo failed";
+			}
 		}
 		json.put("success", success);
 		json.put("sessionID", sessionID);
@@ -181,17 +199,28 @@ public class UserController {
 		else {
 			Doctor doctor=new Doctor();
 			DoctorInfo info=new DoctorInfo();
+			info.setName(name);
+			info.setIDCard(idNumber);
+			
 			if(sex.compareTo("man")==0)
 				info.setBoy();
 			else if(sex.compareTo("woman")==0)
 				info.setGirl();
 			info.setIDCard(idNumber);
+			Utils.log("IDNumber=" + idNumber);
 			info.setTel(phone);
 			info.setTitle(title);
 			info.setDepartmentID(Integer.parseInt(department));
-			doctor.setUID(Doctor.getBackIDbyDBID(sessionCtrl.getUIDbySID(sessionID)));
+			int uidBack = sessionCtrl.getUIDbySID(sessionID);
+			info.setId(uidBack);
 			doctor.setInfo(info);
-			doctor.updateInfo();
+			boolean ret = doctor.updateInfo();
+			if(ret==false) {
+				Utils.log("regist:updateInfo failed:backUid="+info.getId()+" ");
+				success = 0;
+				sessionID = "";
+				errCode="regist:updateInfo failed";
+			}
 		}
 		json.put("success", success);
 		json.put("sessionID", sessionID);

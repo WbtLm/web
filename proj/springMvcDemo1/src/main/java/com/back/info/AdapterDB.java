@@ -21,8 +21,7 @@ public class AdapterDB {
 		else {
 			retDoctorInfo.deleteSex();
 		}
-		
-		retDoctorInfo.deleteIDCard();
+		retDoctorInfo.setIDCard(db.getIdNumber());
 		retDoctorInfo.deleteTel();
 		
 		
@@ -34,6 +33,7 @@ public class AdapterDB {
 		ret.setDepartmentId(info.getDepartmentID());
 		ret.setId(info.getId()/10);
 		ret.setName(info.getName());
+		ret.setIdNumber(info.getIDCard());
 		if(info.isBoy()) {
 			ret.setSex("男");
 		}

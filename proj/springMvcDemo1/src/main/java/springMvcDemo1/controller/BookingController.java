@@ -29,7 +29,7 @@ public class BookingController {
 		JSONObject jsonObj =JSONObject.parseObject(request);
 		
 		String sidStr=jsonObj.getString("sidStr");
-		String docUIDstr=jsonObj.getString("docUIDstr");
+		String docUIDstr=jsonObj.getString("id");
 		String yearString=jsonObj.getString("yearString");
 		String monthString=jsonObj.getString("monthString");
 		String dayString=jsonObj.getString("dayString");
@@ -40,6 +40,8 @@ public class BookingController {
 			json.put("success",0);
 			json.put("errCode", "arg == null");
 			Utils.log(json.toJSONString());
+			Utils.log("sid="+sidStr+",docUIDstr="+docUIDstr+",year="+yearString+",month="+monthString+"day="+dayString);
+			Utils.log(request);
 			return json.toJSONString();
 		}
 		int year = Integer.valueOf(yearString);

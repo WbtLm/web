@@ -98,9 +98,11 @@ public class Patient {
 	}
 	public boolean updateInfo() {
 		if(info==null) {
+			Utils.log("info == null");
 			return false;
 		}
 		if(dao.updatePatient(AdapterDB.patientInfoEchoBack2DB(this.info)) == 0){
+			Utils.log("dao.update failed");
 			return false;
 		}
 		return true;
