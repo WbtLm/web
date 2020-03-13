@@ -46,7 +46,7 @@
     <select id="getPatientList" parameterType="int" resultType="DBPatient">
         select * from patient where PatientId in (
             select register.PatientId from register where
-            DoctorId = #{d_id} and register.DiagnosticState = 0;
+            DoctorId = #{d_id} 
         )
     </select>
     <!--医师修改患者挂号状态-->
