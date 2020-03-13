@@ -74,6 +74,8 @@ public class BookingController {
 			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
+		Utils.log("regist sickbed:doctorUID="+docUID);
+		
 		boolean ret = patient.bookingSickbed(docUID, year, month, day);
 		if(ret==false) {
 			json.put("success",0);

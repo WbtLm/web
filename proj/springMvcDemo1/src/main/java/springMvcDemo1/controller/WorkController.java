@@ -38,6 +38,7 @@ public class WorkController {
 		json.put("success",1);
 		json.put("docInfoLst", doctorInfo);
 		json.put("errCode", "");
+		Utils.log(json.toJSONString());
 		return json.toJSONString();
 	}
 	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")

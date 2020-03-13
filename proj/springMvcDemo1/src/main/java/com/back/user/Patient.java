@@ -127,6 +127,7 @@ public class Patient {
 		int j=0;
 		for(int i=0;i<docList.size();i++) {
 			if(ret[i].getDepartmentID()==deptID || deptID == 1000) {
+				ret[i].setId(Doctor.getBackIDbyDBID(i+1));
 				retInfos[j++] = ret[i];
 			}
 		}
@@ -142,6 +143,7 @@ public class Patient {
 		dbAppointCheckUp.setPatientId(this.getDBID());
 		dbAppointCheckUp.setTypeId(type);
 		dbAppointCheckUp.setAppointmentTime(new Date(dateYear-1900,dateMonth-1,dateDay));
+		
 		int ret = checkupDao.insertCheckup(dbAppointCheckUp);
 		if(ret==0) {
 			return false;
@@ -156,6 +158,7 @@ public class Patient {
 		DBHospital dbHospital = new DBHospital();
 		dbHospital.setPatientId(this.getDBID());
 		dbHospital.setDoctorId(Doctor.getDBIDbyBackID(doctorID));
+		Utils.log("bookingSIckbed:doctorUIDback="+Doctor.getDBIDbyBackID(doctorID));
 		dbHospital.setAppointmentTime(new Date(dateYear-1900,dateMonth-1,dateDay));
 		int ret = hospitalDao.insertHospital(dbHospital);
 		if(ret==0) {
