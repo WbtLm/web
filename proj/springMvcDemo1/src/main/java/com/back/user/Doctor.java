@@ -61,6 +61,10 @@ public class Doctor {
 			info = new DoctorInfo();
 		}
 		DBDoctor retDBDoctor = dao.selectDoctorById(this.getDBID());//select dbinfo of backinfo.id
+		if(retDBDoctor == null) {
+			Utils.log("dao.selectDoctorById failed DBID="+this.getDBID());
+			return false;
+		}
 		info = AdapterDB.doctorInfoEchoDB2Back(retDBDoctor);//echo dbinfo to backinfo
 		if(info==null) {
 			return false;

@@ -50,7 +50,7 @@ public class BookingController {
 
 		int uid = Utils.getBackUIDbySID(sidStr);
 		int docUID = Integer.valueOf(docUIDstr);
-		
+
 		boolean isPatient = UserBasicInfo.isPatientCapacity(sessionCtrl.getTypebySID(sidStr));
 		if (uid==0) {
 			json.put("success",0);
@@ -87,7 +87,7 @@ public class BookingController {
 	public String bookingRegistDoctor(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
 		String sidStr=jsonObj.getString("sidStr");
-		String docUIDstr=jsonObj.getString("docUIDstr");
+		String docUIDstr=jsonObj.getString("id");
 		String yearString=jsonObj.getString("yearString");
 		String monthString=jsonObj.getString("monthString");
 		String dayString=jsonObj.getString("dayString");
