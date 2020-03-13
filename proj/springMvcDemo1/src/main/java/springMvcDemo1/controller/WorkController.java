@@ -19,7 +19,7 @@ public class WorkController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
 	//					     work/patient/getDoctorLst
 	
-	@RequestMapping(value = "work/patient/getDoctorLst",method=RequestMethod.POST)
+	@RequestMapping(value = "work/patient/getDoctorLst",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String workPatientGetDoctorLst(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -40,7 +40,7 @@ public class WorkController {
 		json.put("errCode", "");
 		return json.toJSONString();
 	}
-	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.POST)
+	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String workDoctorGetPatientLst(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -74,7 +74,7 @@ public class WorkController {
 	
 //	updateRegStatusByPatientID
 	
-	@RequestMapping(value = "work/doctor/setPatientCond",method=RequestMethod.POST)
+	@RequestMapping(value = "work/doctor/setPatientCond",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String workDoctorSetPatientCond(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);

@@ -23,7 +23,7 @@ import ch.qos.logback.classic.pattern.Util;
 @Controller
 public class BookingController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
-	@RequestMapping(value = "booking/regist/sickbed",method=RequestMethod.POST)
+	@RequestMapping(value = "booking/regist/sickbed",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String bookingRegistSickbed(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -67,6 +67,13 @@ public class BookingController {
 		//get patient info
 		Patient patient = new Patient();
 		patient.setUID(uid);
+		if(docUID==0) {
+			Utils.log("error:docUID==0");
+			json.put("success",0);
+			json.put("errCode", "doctorUID==0");
+			Utils.log(json.toJSONString());
+			return json.toJSONString();
+		}
 		boolean ret = patient.bookingSickbed(docUID, year, month, day);
 		if(ret==false) {
 			json.put("success",0);
@@ -82,7 +89,7 @@ public class BookingController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value = "booking/regist/doctor",method=RequestMethod.POST)
+	@RequestMapping(value = "booking/regist/doctor",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String bookingRegistDoctor(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -139,7 +146,7 @@ public class BookingController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value = "booking/regist/healthCheck",method=RequestMethod.POST)
+	@RequestMapping(value = "booking/regist/healthCheck",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String bookingRegistHealthCheck(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);

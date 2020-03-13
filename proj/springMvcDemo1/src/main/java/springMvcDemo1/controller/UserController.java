@@ -31,7 +31,7 @@ public class UserController {
 	}
 
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
-	@RequestMapping(value = "user/getInfo",method=RequestMethod.POST)
+	@RequestMapping(value = "user/getInfo",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String userGetInfo(@RequestBody String request) {	
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -87,7 +87,7 @@ public class UserController {
 		Utils.log(JSON.toJSONString(json));
 		return JSON.toJSONString(json);
 	}
-	@RequestMapping(value = "user/login",method=RequestMethod.POST)
+	@RequestMapping(value = "user/login",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String userLogin1(@RequestBody String request) {	
 		JSONObject jsonObj =JSONObject.parseObject(request);
@@ -124,7 +124,7 @@ public class UserController {
 		return JSON.toJSONString(json);
 	}
 	
-	@RequestMapping(value = "user/regist/patient",method=RequestMethod.POST)
+	@RequestMapping(value = "user/regist/patient",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String userRegistPatient(@RequestBody String regist) {
 		JSONObject jsonObj =JSONObject.parseObject(regist);
@@ -176,7 +176,7 @@ public class UserController {
 		System.out.println(JSON.toJSONString(json));
 		return JSON.toJSONString(json);
 	}
-	@RequestMapping(value = "user/regist/doctor",method=RequestMethod.POST)
+	@RequestMapping(value = "user/regist/doctor",method=RequestMethod.POST,produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String userRegistDoctor(@RequestBody String regist){
 		JSONObject jsonObj =JSONObject.parseObject(regist);
