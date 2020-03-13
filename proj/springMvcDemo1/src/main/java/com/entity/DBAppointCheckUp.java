@@ -3,15 +3,15 @@ import java.util.Date;
 
 public class DBAppointCheckUp {
 	
-	int id;
+	int checkupId;
 	int patientId;
 	int typeId;
 	Date appointmentTime;
 	public int getId() {
-		return id;
+		return checkupId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.checkupId = id;
 	}
 	public int getPatientId() {
 		return patientId;

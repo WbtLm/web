@@ -3,7 +3,7 @@ package com.entity;
 import java.io.Serializable;
 
 public class DBPatient implements Serializable {
-    private int id;
+    private int patientId;
     private String idNumber;
     private String healthCareType;
     private String name;
@@ -12,11 +12,11 @@ public class DBPatient implements Serializable {
     private String allergy; //过敏史
 
     public int getId() {
-        return id;
+        return patientId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.patientId = id;
     }
 
     public String getIdNumber() {
