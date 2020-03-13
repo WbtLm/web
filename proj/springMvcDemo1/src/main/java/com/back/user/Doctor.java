@@ -96,6 +96,7 @@ public class Doctor {
 	}
 	public PatientInfo[] getPatientList() {
 		List<DBPatient> retDbPatients = dao.getPatientList(getDBID());
+		Utils.log("getPatientList:getDBID:"+getDBID());
 		int size=retDbPatients.size();
 		PatientInfo[] ret= new PatientInfo[size];
 		for(int i=0;i<size;i++) {

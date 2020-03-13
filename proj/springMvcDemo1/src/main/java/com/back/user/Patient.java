@@ -127,7 +127,8 @@ public class Patient {
 		int j=0;
 		for(int i=0;i<docList.size();i++) {
 			if(ret[i].getDepartmentID()==deptID || deptID == 1000) {
-				ret[i].setId(Doctor.getBackIDbyDBID(i+1));
+//				ret[i].setId(Doctor.getBackIDbyDBID(i+1));
+				Utils.log(""+ret[i].getId());
 				retInfos[j++] = ret[i];
 			}
 		}

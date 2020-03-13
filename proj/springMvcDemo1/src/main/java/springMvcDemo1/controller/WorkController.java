@@ -46,6 +46,7 @@ public class WorkController {
 	public String workDoctorGetPatientLst(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
 		String sIDString=jsonObj.getString("sIDString");
+		Utils.log("workDoctorGetPatientLst:doctor.sid="+sIDString);
 		JSONObject json = new JSONObject();
 		if(sIDString==null) {
 			json.put("success",0);
@@ -53,6 +54,7 @@ public class WorkController {
 			return json.toJSONString();
 		}
 		int uid = Utils.getBackUIDbySID(sIDString);
+
 		boolean isDoctor = UserBasicInfo.isDoctorCapacity(sessionCtrl.getTypebySID(sIDString));
 		if (uid==0) {
 			json.put("success",0);
@@ -66,10 +68,12 @@ public class WorkController {
 		}
 		Doctor doctor = new Doctor();
 		doctor.setUID(uid);
+		Utils.log("workDoctorGetPatientLst:doctor.uid="+uid+"sid="+sIDString);
 		PatientInfo[] patientInfoLst  = doctor.getPatientList();
 		json.put("success", 1);
 		json.put("patientInfoLst",	patientInfoLst);
 		json.put("errCode","");
+		Utils.log(json.toJSONString());
 		return json.toJSONString();
 	}
 	

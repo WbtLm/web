@@ -15,19 +15,7 @@ public class Utils {
 	}
 	static public int getBackUIDbySID(String sidStr) {
 		SessionCtrl sessionCtrl = SessionCtrl.getInstance();
-		int uidDB = sessionCtrl.getUIDbySID(sidStr);
-		int type = sessionCtrl.getTypebySID(sidStr);
-		Utils.log("uidDB="+uidDB+" type="+type);
-		if(UserBasicInfo.isDoctorCapacity(type)) {
-			return Doctor.getBackIDbyDBID(uidDB);
-		}
-		else if(UserBasicInfo.isPatientCapacity(type)){
-			return Patient.getBackIDbyDBID(uidDB);
-		}
-		else {
-			Utils.log("Utils.getBackUIDbySID: sex undefined,return uid=0");
-			return 0;
-		}
+		return sessionCtrl.getUIDbySID(sidStr);
 	}
 	static public void log(String log) {
 		if(log==null) {
