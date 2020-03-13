@@ -2,13 +2,13 @@ package com.entity;
 
 public class DBDepartment {
   
-	int id;
+	int departmentId;
 	String department;
 	public int getId() {
-		return id;
+		return departmentId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.departmentId = id;
 	}
 	public String getDepartment() {
 		return department;

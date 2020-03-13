@@ -3,7 +3,7 @@ package com.entity;
 import java.io.Serializable;
 
 public class DBDoctor implements Serializable {
-    private int id;
+    private int doctorId;
     private String idNumber;
     private String name;
     private String sex;
@@ -20,11 +20,11 @@ public class DBDoctor implements Serializable {
     }
 
     public int getId() {
-        return id;
+        return doctorId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.doctorId = id;
     }
 
     public String getName() {

@@ -1,13 +1,13 @@
 package com.entity;
 
 public class DBCheckUpType {
-	int id;
+	int typeId;
 	String typeName;
 	public int getId() {
-		return id;
+		return typeId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.typeId = id;
 	}
 	public String getTypeName() {
 		return typeName;

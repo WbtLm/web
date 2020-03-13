@@ -3,16 +3,16 @@ import java.util.Date;
 
 public class DBRegister {
 	
-	int id;
+	int registerId;
 	int patientId;
 	int doctorId;
 	Date appointmentTime;
 	int diagnosticState;
 	public int getId() {
-		return id;
+		return registerId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.registerId = id;
 	}
 	public int getPatientId() {
 		return patientId;

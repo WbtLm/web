@@ -1,14 +1,14 @@
 package com.entity;
 
 public class DBPatientAccount {
-    int id;
+    int patientId;
     String account;
     String passWord;
 	public int getId() {
-		return id;
+		return patientId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.patientId = id;
 	}
 	public String getAccount() {
 		return account;
