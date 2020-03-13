@@ -26,11 +26,11 @@
     <update id="updateDoctor" parameterType="DBDoctor">
         update doctor set
             IdNumber = #{idNumber},
-            DepartmentId = #{healthCareType},
+            DepartmentId = #{departmentId},
             Name = #{name},
             Sex = #{sex},
             Age = #{age},
-            Title = #{allergy}
+            Title = #{title}
         where
             DoctorId = #{id}
     </update>

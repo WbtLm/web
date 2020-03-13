@@ -33,13 +33,13 @@ public class BookingController {
 		String yearString=jsonObj.getString("yearString");
 		String monthString=jsonObj.getString("monthString");
 		String dayString=jsonObj.getString("dayString");
-		int success=0;
 		String bedID="";
 		String errCodeString = "";
 		JSONObject json = new JSONObject();
 		if(sidStr==null || docUIDstr ==null || yearString == null || monthString == null || dayString == null) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "arg == null");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		int year = Integer.valueOf(yearString);
@@ -51,13 +51,15 @@ public class BookingController {
 		
 		boolean isPatient = UserBasicInfo.isPatientCapacity(sessionCtrl.getTypebySID(sidStr));
 		if (uid==0) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "user unlogin");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		if(isPatient == false) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "is not patient");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		//get patient info
@@ -65,14 +67,16 @@ public class BookingController {
 		patient.setUID(uid);
 		boolean ret = patient.bookingSickbed(docUID, year, month, day);
 		if(ret==false) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "patient.bookingSickbed failed");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		
 		
-		json.put("success","1");
+		json.put("success",1);
 		json.put("errCode", "");
+		Utils.log(json.toJSONString());
 		return json.toJSONString();
 	}
 	
@@ -90,8 +94,9 @@ public class BookingController {
 		String errCodeString = "";
 		JSONObject json = new JSONObject();
 		if(sidStr==null || docUIDstr ==null || yearString == null || monthString == null || dayString == null) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "arg == null");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		int year = Integer.valueOf(yearString);
@@ -101,15 +106,17 @@ public class BookingController {
 		int uid = Utils.getBackUIDbySID(sidStr);
 		int docUID = Integer.valueOf(docUIDstr);
 		if (uid==0) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "user unlogin");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		boolean isPatient = UserBasicInfo.isPatientCapacity(sessionCtrl.getTypebySID(sidStr));
 		
 		if(isPatient == false) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "is not patient");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		//get patient info
@@ -117,14 +124,16 @@ public class BookingController {
 		patient.setUID(uid);
 		boolean ret = patient.bookingDoctor(docUID, year, month, day,0); // 0 is unused
 		if(ret==false) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "patient.bookingSickbed failed");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		
 		
-		json.put("success","1");
+		json.put("success",1);
 		json.put("errCode", "");
+		Utils.log(json.toJSONString());
 		return json.toJSONString();
 	}
 	
@@ -142,26 +151,29 @@ public class BookingController {
 		String errCodeString = "";
 		JSONObject json = new JSONObject();
 		if(sidStr==null || checkTypeStr ==null || yearString == null || monthString == null || dayString == null) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "arg == null");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		int year = Integer.valueOf(yearString);
 		int month = Integer.valueOf(monthString);
 		int day = Integer.valueOf(dayString);
-
+		Utils.log("sessionID="+sidStr);
 		int uid = Utils.getBackUIDbySID(sidStr);
 		int checkType = Integer.valueOf(checkTypeStr);
 		if (uid==0) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "user unlogin");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		boolean isPatient = UserBasicInfo.isPatientCapacity(sessionCtrl.getTypebySID(sidStr));
 		
 		if(isPatient == false) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "is not patient");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		//get patient info
@@ -169,14 +181,16 @@ public class BookingController {
 		patient.setUID(uid);
 		boolean ret = patient.bookingHealthCheck(checkType, year, month, day);
 		if(ret==false) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "patient.bookingHealthCheck failed");
+			Utils.log(json.toJSONString());
 			return json.toJSONString();
 		}
 		
 		
-		json.put("success","1");
+		json.put("success",1);
 		json.put("errCode", "");
+		Utils.log(json.toJSONString());
 		return json.toJSONString();
 	}
 	
@@ -186,7 +200,6 @@ public class BookingController {
 		JSONObject jsonObj =JSONObject.parseObject(request);
 		
 		String sessionID=jsonObj.getString("sessionID");
-		int success=1;
 		String errCode="";
 		JSONObject json = new JSONObject();
 		if(sessionCtrl.isCorrect(sessionID) ==0) {
@@ -207,7 +220,7 @@ public class BookingController {
 			int year=sickBedInfo.getAppointmentTime().getYear()+1900;
 			int month=sickBedInfo.getAppointmentTime().getMonth()+1;
 			int day=sickBedInfo.getAppointmentTime().getDay();
-			json.put("success",success);
+			json.put("success",1);
 			json.put("year",year);
 			json.put("month",month);
 			json.put("day",day);
@@ -215,7 +228,7 @@ public class BookingController {
 			return json.toJSONString();
 		}
 		else {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "该身份无权查询");
 			return json.toJSONString();
 		}
@@ -225,7 +238,6 @@ public class BookingController {
 	public String bookingQueryDcotorInfo(@RequestBody String request) {
 		JSONObject jsonObj =JSONObject.parseObject(request);
 		String sessionID=jsonObj.getString("sessionID");
-		int success=1;
 		String errCode="";
 		JSONObject json = new JSONObject();
 		if(sessionCtrl.isCorrect(sessionID) ==0) {
@@ -239,7 +251,7 @@ public class BookingController {
 			patient.setUID(Patient.getBackIDbyDBID(sessionCtrl.getUIDbySID(sessionID)));
 			DBRegister doctorInfo=patient.queryDoctorInfo();
 			if(doctorInfo==null) {
-				json.put("success", "0");
+				json.put("success",0);
 				json.put("errCode","查询失败");
 				return json.toJSONString();
 			}
@@ -249,7 +261,7 @@ public class BookingController {
 			Doctor doctor=new Doctor();
 			doctor.setUID(Doctor.getBackIDbyDBID(sessionCtrl.getUIDbySID(sessionID)));
 			doctor.selectInfo();
-			json.put("success",success);
+			json.put("success",1);
 			json.put("registerID", doctorInfo.getId());
 			json.put("doctorName", doctor.getInfo().getUserName());
 			json.put("year",year);
@@ -260,7 +272,7 @@ public class BookingController {
 			return json.toJSONString();
 		}
 		else {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "该身份无权查询");
 			return json.toJSONString();
 		}
@@ -274,7 +286,7 @@ public class BookingController {
 		String errCode="";
 		JSONObject json = new JSONObject();
 		if(sessionCtrl.isCorrect(sessionID) ==0) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "SessionID无效");
 			return json.toJSONString();
 			
@@ -284,7 +296,7 @@ public class BookingController {
 			patient.setUID(Patient.getBackIDbyDBID(sessionCtrl.getUIDbySID(sessionID)));
 			DBAppointCheckUp appointCheckUp=patient.queryHealthCheckInfo();
 			if(appointCheckUp==null) {
-				json.put("success", "0");
+				json.put("success", 0);
 				json.put("errCode","查询失败");
 				return json.toJSONString();
 			}
@@ -300,7 +312,7 @@ public class BookingController {
 			return json.toJSONString();
 		}
 		else {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "该身份无权查询");
 			return json.toJSONString();
 		}

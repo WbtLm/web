@@ -30,6 +30,63 @@ public class UserController {
 	}
 
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
+	@RequestMapping(value = "user/getInfo",method=RequestMethod.POST)
+	@ResponseBody
+	public String userGetInfo(@RequestBody String request) {	
+		JSONObject jsonObj =JSONObject.parseObject(request);
+		JSONObject json = new JSONObject();
+		String sidStr=jsonObj.getString("sidStr");
+		int type;
+		if(jsonObj.getString("type").equals("user")) {
+			type=1;
+		}
+		else if(jsonObj.getString("type").equals("doctor")) {
+			type=2;
+		}
+		else {
+			json.put("success", 0);
+			json.put("info", "{}");
+			json.put("errCode", "身份不存在");
+			return JSON.toJSONString(json);
+		}
+		int uid=sessionCtrl.getUIDbySID(sidStr);
+		if(sessionCtrl.isCorrect(sidStr) == 0) {
+			json.put("success", 0);
+			json.put("info", "{}");
+			json.put("errCode", "登录状态异常：sessionID invalid");
+			return JSON.toJSONString(json);
+		}
+		if(type==1) {
+			Patient patient = new Patient();
+			patient.setUID(uid);
+			boolean ret=patient.selectInfo();
+			if(ret==false) {
+				json.put("success", 0);
+				json.put("info", "{}");
+				json.put("errCode", "数据库获取info失败");
+				return json.toJSONString(json);
+			}
+			json.put("success", 1);
+			json.put("info", patient.getInfo());
+			json.put("errCode", "");
+		}
+		else {
+			Doctor doctor = new Doctor();
+			doctor.setUID(uid);
+			boolean ret = doctor.selectInfo();
+			if (ret==false) {
+				json.put("success", 0);
+				json.put("info", "{}");
+				json.put("errCode", "数据库获取info失败");
+				return json.toJSONString(json);
+			}
+			json.put("success", 1);
+			json.put("info", doctor.getInfo());
+			json.put("errCode", "");
+		}
+		System.out.println(JSON.toJSONString(json));
+		return JSON.toJSONString(json);
+	}
 	@RequestMapping(value = "user/login",method=RequestMethod.POST)
 	@ResponseBody
 	public String userLogin1(@RequestBody String request) {	

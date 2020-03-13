@@ -1,5 +1,6 @@
 package springMvcDemo1.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,9 +14,11 @@ import com.back.user.Doctor;
 import com.back.user.Patient;
 import com.ctrl.SessionCtrl;
 import com.ctrl.Utils;
-
+@Controller
 public class WorkController {
 	SessionCtrl sessionCtrl = SessionCtrl.getInstance();
+	//					     work/patient/getDoctorLst
+	
 	@RequestMapping(value = "work/patient/getDoctorLst",method=RequestMethod.POST)
 	@ResponseBody
 	public String workPatientGetDoctorLst(@RequestBody String request) {
@@ -23,21 +26,20 @@ public class WorkController {
 		
 		String departmentIDstr=jsonObj.getString("departmentIDstr");
 		
-		int success=0;
 		JSONObject json = new JSONObject();
 		if(departmentIDstr==null) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "arg==null");
 			return json.toJSONString();
 		}
 		int deptID = Integer.valueOf(departmentIDstr);
-		DoctorInfo[] doctorInfo = Patient.getDoctorLstByDept(deptID);
-		json.put("success","1");
+		Patient patient =new Patient();
+		DoctorInfo[] doctorInfo = patient.getDoctorLstByDept(deptID);
+		json.put("success",1);
 		json.put("docInfoLst", doctorInfo);
 		json.put("errCode", "");
 		return json.toJSONString();
 	}
-	
 	@RequestMapping(value = "work/doctor/getPatientLst",method=RequestMethod.POST)
 	@ResponseBody
 	public String workDoctorGetPatientLst(@RequestBody String request) {
@@ -45,19 +47,19 @@ public class WorkController {
 		String sIDString=jsonObj.getString("sIDString");
 		JSONObject json = new JSONObject();
 		if(sIDString==null) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "arg==null");
 			return json.toJSONString();
 		}
 		int uid = Utils.getBackUIDbySID(sIDString);
 		boolean isDoctor = UserBasicInfo.isDoctorCapacity(sessionCtrl.getTypebySID(sIDString));
 		if (uid==0) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "user unlogin");
 			return json.toJSONString();
 		}
 		if(isDoctor==false) {
-			json.put("success", "0");
+			json.put("success", 0);
 			json.put("errCode","is not doctor");
 			return json.toJSONString();
 		}
@@ -83,12 +85,12 @@ public class WorkController {
 		int patientID = Integer.valueOf(patientIDString);
 		boolean isDoctor = UserBasicInfo.isDoctorCapacity(sessionCtrl.getTypebySID(sIDString));
 		if (uid==0) {
-			json.put("success","0");
+			json.put("success",0);
 			json.put("errCode", "user unlogin");
 			return json.toJSONString();
 		}
 		if(isDoctor==false) {
-			json.put("success", "0");
+			json.put("success", 0);
 			json.put("errCode","is not doctor");
 			return json.toJSONString();
 		}

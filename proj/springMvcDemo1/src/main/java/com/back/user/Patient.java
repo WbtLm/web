@@ -25,7 +25,7 @@ import com.entity.DBRegister;
 
 public class Patient {
 	PatientInfo info;
-	static PatientDao dao;
+	PatientDao dao;
 	RegisterDao registerDao;
 	HospitalDao hospitalDao;
 	CheckupDao checkupDao;
@@ -37,6 +37,9 @@ public class Patient {
 		info = new PatientInfo();
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring_context.xml");
 		dao = (PatientDao) ctx.getBean("patientDao");
+		registerDao = (RegisterDao) ctx.getBean("registerDao");
+		hospitalDao = (HospitalDao) ctx.getBean("hospitalDao");
+		checkupDao = (CheckupDao) ctx.getBean("checkupDao");
 	}
 	public static int getDBIDbyBackID(int patientBackID) {
 		PatientInfo pInfo = new PatientInfo();
@@ -99,7 +102,7 @@ public class Patient {
 	 * @param deptID
 	 * @return
 	 */
-	static public DoctorInfo[] getDoctorLstByDept(int deptID) {
+	public DoctorInfo[] getDoctorLstByDept(int deptID) {
 		List<DBDoctor> docList = dao.getDoctorList();
 		DoctorInfo[] ret = new DoctorInfo[docList.size()];
 

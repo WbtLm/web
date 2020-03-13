@@ -17,7 +17,9 @@ import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSONObject;
 import com.back.info.*;
+import com.ctrl.Utils;
 public class Doctor {
 	DoctorInfo info;
 	private DoctorDao dao;
@@ -80,6 +82,9 @@ public class Doctor {
 		if(info==null) {
 			return false;
 		}
+//		JSONObject jsonObject= new JSONObject();
+//		jsonObject.put("obj", this);
+//		Utils.log(jsonObject.toJSONString());
 		if(dao.updateDoctor(AdapterDB.doctorInfoEchoBack2DB(this.info)) == 0){
 			return false;
 		}

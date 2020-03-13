@@ -54,7 +54,9 @@ public class SessionCtrl {
 	}
 	public int getTypebySID(String SID) {
 		System.out.println("getTypebySID.input SID = "+SID);
-		return (int)SID.indexOf(0);
+		int ret=(int)SID.charAt(0) - '0';
+		Utils.log(""+ret);
+		return ret;
 	}
 	public String getSIDbyLogin(int type,String account,String password) {
 		int UID=0;
