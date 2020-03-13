@@ -35,21 +35,11 @@ public class UserController {
 	public String userGetInfo(@RequestBody String request) {	
 		JSONObject jsonObj =JSONObject.parseObject(request);
 		JSONObject json = new JSONObject();
-		String sidStr=jsonObj.getString("sidStr");
+		String sidStr=jsonObj.getString("sessionID");
 		int type;
-		if(jsonObj.getString("type").equals("user")) {
-			type=1;
-		}
-		else if(jsonObj.getString("type").equals("doctor")) {
-			type=2;
-		}
-		else {
-			json.put("success", 0);
-			json.put("info", "{}");
-			json.put("errCode", "身份不存在");
-			return JSON.toJSONString(json);
-		}
+
 		int uid=sessionCtrl.getUIDbySID(sidStr);
+		type = sessionCtrl.getTypebySID(sidStr);
 		if(sessionCtrl.isCorrect(sidStr) == 0) {
 			json.put("success", 0);
 			json.put("info", "{}");

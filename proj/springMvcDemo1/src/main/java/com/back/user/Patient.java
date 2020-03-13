@@ -10,6 +10,7 @@ import org.springframework.jmx.export.naming.IdentityNamingStrategy;
 import com.back.info.AdapterDB;
 import com.back.info.DoctorInfo;
 import com.back.info.PatientInfo;
+import com.ctrl.Utils;
 import com.dao.CheckupDao;
 import com.dao.DoctorAccountDao;
 import com.dao.DoctorDao;
@@ -68,9 +69,16 @@ public class Patient {
 	
 	public boolean selectInfo() {
 		if(info==null) {
-			info = new PatientInfo();
+			Utils.log("error:info==null id = null");
+			return false;
 		}
+		Utils.log("select patient Info by id");
 		DBPatient retDBPatient = dao.selectPatientById(this.getDBID());//select dbinfo of backinfo.id
+		if(retDBPatient==null) {
+			Utils.log("error:retDBPatient == null");
+			Utils.log("DBID="+this.getDBID()+"BackUID="+this.info.getId());
+			return false;
+		}
 		info = AdapterDB.patientInfoEchoDB2Back(retDBPatient);//echo dbinfo to backinfo
 		if(info==null) {
 			return false;
